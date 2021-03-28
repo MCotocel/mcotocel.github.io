@@ -2,3 +2,11 @@
     font-family: monospace;
     white-space: pre-line;
 }
+
+a:link, a:visited, a:active {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
