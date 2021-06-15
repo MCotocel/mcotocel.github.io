@@ -7,3 +7,7 @@ Welcome to my site, where I talk about ricing. You'll usually find me talking ab
 * Links
 
 I'm on various places on the internet. You can find me on [[https://www.youtube.com/channel/UCUs99naenQw3RQxx1Rv-lNg][Youtube]], [[https://github.com/mcotocel][Github]], and [[https://stackexchange.com/users/17058458/twlvseconds][Stackexchange]]. If you want to contact me, feel free to [[mailto:mcotocel@outlook.com][email me]].
+
+* Posts
+
+  - [[./emacs.html][My emacs config]]
