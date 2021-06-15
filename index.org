@@ -1,0 +1,9 @@
+#+title: Welcome
+
+* Intro
+
+Welcome to my site, where I talk about ricing. You'll usually find me talking about Emacs, my preferred text editor, Linux, my preferred operating system, and AwesomeWM, my preferred window manager.
+
+* Links
+
+I'm on various places on the internet. You can find me on [[https://www.youtube.com/channel/UCUs99naenQw3RQxx1Rv-lNg][Youtube]], [[https://github.com/mcotocel][Github]], and [[https://stackexchange.com/users/17058458/twlvseconds][Stackexchange]]. If you want to contact me, feel free to [[mailto:mcotocel@outlook.com][email me]].
