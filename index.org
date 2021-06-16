@@ -1,4 +1,5 @@
 #+title: Welcome
+#+description: Welcome page of my website
 
 * Intro
 
