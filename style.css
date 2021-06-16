@@ -1,11 +1,10 @@
-@import url("https://fonts.googleapis.com/css?family=Proxima+Nova");
-@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
+@import url("https://fonts.googleapis.com/css?family=Proxima+Nova|Source+Code+Pro");
 
 body {
   padding: 20px;
   background-color: #f0eeed;
   color: #151a1f;
-  font-family: "Proxima Nova";
+  font-family: "Proxima Nova", "Sans Serif";
   font-size: 16px;
   line-height: 22px;
   margin: 0 auto;
@@ -17,7 +16,7 @@ pre {
   background: #ebebeb;
   border: 0px solid #777;
   border-left: 3px solid #777;
-  font-family: "Source Code Pro";
+  font-family: "Source Code Pro", "Monospace";
   padding-top: 10px;
   padding-right: 50px;
   padding-bottom: 10px;

@@ -617,13 +617,22 @@ Emacs can do everything, including manage mail.
   (setq mu4e-sent-folder   "/Sent")
   (setq mu4e-trash-folder  "/Deleted")
 
-  (setq mu4e-get-mail-command "offlineimap")
+  (setq mu4e-get-mail-command "mbsync -a"
+    mu4e-view-prefer-html t
+    mu4e-update-interval 180
+    mu4e-headers-auto-update t
+    mu4e-compose-signature-auto-include nil
+    mu4e-compose-format-flowed t)
 
   (setq
    user-mail-address "mcotocel@outlook.com"
    user-full-name  "Matei Cotocel")
 
+  (setq mu4e-view-show-images t)
+
   (require 'org-mu4e)
+
+  (setq org-mu4e-convert-to-html t)
 
   (setq message-send-mail-function 'smtpmail-send-it)
   (setq smtpmail-smtp-server "smtp-mail.outlook.com")
@@ -654,9 +663,6 @@ It also has an IRC client available, so let's install and configure it.
              " ")))
 
 #+END_SRC
-
-#+RESULTS:
-: my-circe-prompt
 
 *** Matrix
 
