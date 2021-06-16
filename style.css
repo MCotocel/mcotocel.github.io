@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Proxima+Nova|Source+Code+Pro");
-
 body {
   padding: 20px;
   background-color: #f0eeed;
@@ -16,7 +14,7 @@ pre {
   background: #ebebeb;
   border: 0px solid #777;
   border-left: 3px solid #777;
-  font-family: "Source Code Pro", monospace;
+  font-family: "Iosevka Nerd Font", monospace;
   padding-top: 10px;
   padding-right: 50px;
   padding-bottom: 10px;
