@@ -388,6 +388,7 @@ Here we install and configure evil, since I /cannot/ use the default Emacs keys.
   (set-default 'evil-replace-state-cursor 'box)
   (set-default 'evil-operator-state-cursor 'hbar)
   (set-cursor-color "#80D1FF")
+  (setq-default cursor-type 'bar) 
 
   ;; We want some emacs in evil
 
@@ -452,7 +453,7 @@ The default startup screen is bland, let's replace it with a nice dashboard. We 
     (setq dashboard-center-content t
       dashboard-show-shortcuts nil
       dashboard-banner-logo-title "Welcome to Emacs"
-      dashboard-startup-banner "~/Code/linux-dotfiles/home/user/Pictures/pfp_rounded_small.png"
+      dashboard-startup-banner "/Users/Matei/Code/linux-dotfiles/Pictures/pfp_rounded_small.png"
       dashboard-set-heading-icons t
       dashboard-set-file-icons t
       dashboard-set-navigator t)
@@ -664,6 +665,9 @@ It also has an IRC client available, so let's install and configure it.
 
 #+END_SRC
 
+#+RESULTS:
+: my-circe-prompt
+
 *** Matrix
 
 I also install a matrix client.
@@ -686,13 +690,18 @@ I also install a matrix client.
 I read RSS feeds, so we're going to configure a reader.
 
 #+BEGIN_SRC emacs-lisp
-    (use-package elfeed)
-    (setq elfeed-feeds
-         '("http://www.reddit.com/r/emacs.rss"
-           "http://www.cyberciti.biz/feed/"
-           "http://www.reddit.com/r/terminal_porn.rss"))
+  (use-package elfeed)
+  (setq elfeed-feeds
+         '(("http://www.reddit.com/r/emacs.rss" tech emacs)
+           ("http://www.reddit.com/r/terminal_porn.rss" tech)))
   (add-to-list 'evil-emacs-state-modes 'elfeed-search-mode)
   (add-to-list 'evil-emacs-state-modes 'elfeed-show-mode)
+
+  (use-package elfeed-dashboard
+    :config
+    (setq elfeed-dashboard-file "~/Org/elfeed-dashboard.org")
+    (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links))
+  (evil-set-initial-state 'elfeed-dashboard-mode 'emacs)
 #+END_SRC
 
 ** LSP
@@ -922,7 +931,6 @@ This changes the faces of Org mode to a nice sans serif font.
 
   (custom-theme-set-faces
    'user
-   '(variable-pitch ((t (:family "Helvetica" :height 160))))
    '(fixed-pitch ((t ( :family "Iosevka Nerd Font" :height 160)))))
 
   (custom-theme-set-faces
@@ -939,5 +947,4 @@ This changes the faces of Org mode to a nice sans serif font.
    '(org-table                 ((t (:inherit fixed-pitch :foreground "#384149"))))
    '(org-tag                   ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
    '(org-verbatim              ((t (:inherit (shadow fixed-pitch))))))
-  (add-hook 'org-mode-hook 'variable-pitch-mode)
 #+end_src
