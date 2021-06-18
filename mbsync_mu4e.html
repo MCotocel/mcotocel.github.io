@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-06-18 Fri 09:56 -->
+<!-- 2021-06-18 Fri 09:54 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Welcome</title>
+<title>Set up mu4e with mbsync</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="Matei Cotocel">
-<meta name="description" content="Welcome page of my website"
+<meta name="description" content="A guide on how to set up mu4e and mbsync"
 >
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
@@ -219,49 +219,129 @@
 </head>
 <body>
 <div id="content">
-<h1 class="title">Welcome</h1>
+<h1 class="title">Set up mu4e with mbsync</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3b6c834">1. Intro</a></li>
-<li><a href="#org9cad0f8">2. Links</a></li>
-<li><a href="#org944122d">3. Posts</a></li>
+<li><a href="#org826a1fa">1. Intro</a></li>
+<li><a href="#orgd1253c2">2. mbsync</a></li>
+<li><a href="#org22348b2">3. mu</a></li>
+<li><a href="#orgb2b9279">4. mu4e</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3b6c834" class="outline-2">
-<h2 id="org3b6c834"><span class="section-number-2">1</span> Intro</h2>
+<div id="outline-container-org826a1fa" class="outline-2">
+<h2 id="org826a1fa"><span class="section-number-2">1</span> Intro</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Welcome to my site, where I talk about ricing. You'll usually find me talking about Emacs, my preferred text editor, Linux, my preferred operating system, and AwesomeWM, my preferred window manager.
+Emacs can do <i>everything</i>. That includes managing mail. There are multiple mail programs for Eamcs, but I like to use mu4e.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9cad0f8" class="outline-2">
-<h2 id="org9cad0f8"><span class="section-number-2">2</span> Links</h2>
+<div id="outline-container-orgd1253c2" class="outline-2">
+<h2 id="orgd1253c2"><span class="section-number-2">2</span> mbsync</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-I'm on various places on the internet. You can find me on <a href="https://www.youtube.com/channel/UCUs99naenQw3RQxx1Rv-lNg">Youtube</a>, <a href="https://github.com/mcotocel">Github</a>, and <a href="https://stackexchange.com/users/17058458/twlvseconds">Stackexchange</a>. If you want to contact me, feel free to <a href="mailto:mcotocel@outlook.com">email me</a>.
+You first need to set up mbsync to synchronize your mailbox. Install it with your package manager, then create a file called <code>.mbsyncrc</code> in your home directory.
+</p>
+
+<pre class="example">
+IMAPAccount mcotocel
+Host imap.outlook.com
+User mcotocel@outlook.com
+PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.mbpassword.gpg"
+
+IMAPStore mcotocel-remote
+Account mcotocel
+
+MaildirStore mcotocel-local
+Path ~/Mail/mcotocel/
+Inbox ~/Mail/mcotocel/Inbox
+
+Channel mcotocel
+Master :mcotocel-remote:
+Slave :mcotocel-local:
+Patterns *
+Create Both
+SyncState *
+</pre>
+
+
+<p>
+Replace my name with your name. Then, create a file called <code>.mbpassword</code> and encrypt it with gpg. mbsync will automatically decrypt that file to read your password. When you're done, run the command <code>mbsync -a</code> to sync the mailbox.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org944122d" class="outline-2">
-<h2 id="org944122d"><span class="section-number-2">3</span> Posts</h2>
+<div id="outline-container-org22348b2" class="outline-2">
+<h2 id="org22348b2"><span class="section-number-2">3</span> mu</h2>
 <div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li><a href="./mbsync_mu4e.html">Setting up mu4e</a></li>
-<li><a href="./emacs.html">My emacs config</a></li>
-</ul>
+<p>
+Install <code>mu</code> from your package manager, then initialize it in the mail directory you set.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">mu init --maildir=~/Mail
+</pre>
+</div>
+
+<p>
+Then index it with the command <code>mu index</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb2b9279" class="outline-2">
+<h2 id="orgb2b9279"><span class="section-number-2">4</span> mu4e</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Mu4e is installed by default, so we just have to configure it.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(require 'mu4e)
+(setq mu4e-maildir (expand-file-name "~/Mail/"))
+
+(setq mu4e-drafts-folder "/Drafts")
+(setq mu4e-sent-folder   "/Sent")
+(setq mu4e-trash-folder  "/Deleted")
+
+(setq mu4e-get-mail-command "mbsync -a"
+  mu4e-view-prefer-html t
+  mu4e-update-interval 180
+  mu4e-headers-auto-update t
+  mu4e-compose-signature-auto-include nil
+  mu4e-compose-format-flowed t)
+
+(setq
+ user-mail-address "mcotocel@outlook.com"
+ user-full-name  "Matei Cotocel")
+
+(setq mu4e-view-show-images t)
+
+(require 'org-mu4e)
+
+(setq org-mu4e-convert-to-html t)
+
+(setq message-send-mail-function 'smtpmail-send-it)
+(setq smtpmail-smtp-server "smtp-mail.outlook.com")
+(setq smtpmail-smtp-service 587 )
+(setq smtpmail-auth-credentials (expand-file-name "~/.authinfo"))
+</pre>
+</div>
+
+<p>
+Replace the name and email address with your name and email address. Then, launch <code>mu4e</code>, sync the maildir, and you should be able to read, receive and send mail.
+</p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matei Cotocel</p>
-<p class="date">Created: 2021-06-18 Fri 09:56</p>
+<p class="date">Created: 2021-06-18 Fri 09:54</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
