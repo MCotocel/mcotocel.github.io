@@ -3,11 +3,11 @@
 
 * Intro
 
-Welcome to my site, where I talk about ricing. You'll usually find me talking about Emacs, my preferred text editor, Linux, my preferred operating system, and AwesomeWM, my preferred window manager.
+Welcome. Here you can read my random posts which barely ever get uploaded. You can also see how I use Emacs, NixOS, and AwesomeWM, if I ever get around to writing an article about each of them.
 
 * Links
 
-I'm on various places on the internet. You can find me on [[https://www.youtube.com/channel/UCUs99naenQw3RQxx1Rv-lNg][Youtube]], [[https://github.com/mcotocel][Github]], and [[https://stackexchange.com/users/17058458/twlvseconds][Stackexchange]]. If you want to contact me, feel free to [[mailto:mcotocel@outlook.com][email me]].
+I'm on various places on the internet. I procrastinate a lot. You can find me on [[https://www.youtube.com/channel/UCUs99naenQw3RQxx1Rv-lNg][Youtube]], [[https://github.com/mcotocel][Github]], and some other places I don't feel like sharing. They're easy enough to find with a Google search. If you want to contact me, feel free to [[mailto:mcotocel@outlook.com][email me]].
 
 * Posts
 
