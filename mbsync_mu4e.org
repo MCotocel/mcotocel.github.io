@@ -35,10 +35,10 @@ Replace my name with your name. Then, create a file called =.mbpassword= and enc
 
 * mu
 
-Install =mu= from your package manager, then initialize it in the mail directory you set.
+Install =mu= from your package manager, then initialize it in the mail directory you set, and with the email address you set.
 
 #+begin_src bash 
-  mu init --maildir=~/Mail
+  mu init --maildir=~/Mail --my-address=mcotocel@outlook.com
 #+end_src
 
 Then index it with the command =mu index=.

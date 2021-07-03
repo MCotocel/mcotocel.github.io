@@ -11,5 +11,6 @@ I'm on various places on the internet. You can find me on [[https://www.youtube.
 
 * Posts
 
+  - [[./site_redesign.html][Site redesign]]
   - [[./mbsync_mu4e.html][Setting up mu4e]]
   - [[./emacs.html][My emacs config]]

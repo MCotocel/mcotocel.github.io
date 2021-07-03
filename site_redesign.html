@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-07-03 Sat 15:24 -->
+<!-- 2021-07-03 Sat 15:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Set up mu4e with mbsync</title>
+<title>Site redesign</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="Matei Cotocel">
-<meta name="description" content="A guide on how to set up mu4e and mbsync"
+<meta name="description" content="Some changes I've made"
 >
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
@@ -219,129 +219,14 @@
 </head>
 <body>
 <div id="content">
-<h1 class="title">Set up mu4e with mbsync</h1>
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#org71be1a1">1. Intro</a></li>
-<li><a href="#org5dba621">2. mbsync</a></li>
-<li><a href="#org27f388b">3. mu</a></li>
-<li><a href="#org55af454">4. mu4e</a></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org71be1a1" class="outline-2">
-<h2 id="org71be1a1"><span class="section-number-2">1</span> Intro</h2>
-<div class="outline-text-2" id="text-1">
+<h1 class="title">Site redesign</h1>
 <p>
-Emacs can do <i>everything</i>. That includes managing mail. There are multiple mail programs for Eamcs, but I like to use mu4e.
+I've redesigned the site, once again. I've switched to a dark colorscheme, monospace fonts, and more padding, but that's it.
 </p>
-</div>
-</div>
-
-<div id="outline-container-org5dba621" class="outline-2">
-<h2 id="org5dba621"><span class="section-number-2">2</span> mbsync</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-You first need to set up mbsync to synchronize your mailbox. Install it with your package manager, then create a file called <code>.mbsyncrc</code> in your home directory.
-</p>
-
-<pre class="example">
-IMAPAccount mcotocel
-Host imap.outlook.com
-User mcotocel@outlook.com
-PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.mbpassword.gpg"
-
-IMAPStore mcotocel-remote
-Account mcotocel
-
-MaildirStore mcotocel-local
-Path ~/Mail/mcotocel/
-Inbox ~/Mail/mcotocel/Inbox
-
-Channel mcotocel
-Master :mcotocel-remote:
-Slave :mcotocel-local:
-Patterns *
-Create Both
-SyncState *
-</pre>
-
-
-<p>
-Replace my name with your name. Then, create a file called <code>.mbpassword</code> and encrypt it with gpg. mbsync will automatically decrypt that file to read your password. When you're done, run the command <code>mbsync -a</code> to sync the mailbox.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org27f388b" class="outline-2">
-<h2 id="org27f388b"><span class="section-number-2">3</span> mu</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-Install <code>mu</code> from your package manager, then initialize it in the mail directory you set, and with the email address you set.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-bash">mu init --maildir=~/Mail --my-address=mcotocel@outlook.com
-</pre>
-</div>
-
-<p>
-Then index it with the command <code>mu index</code>.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org55af454" class="outline-2">
-<h2 id="org55af454"><span class="section-number-2">4</span> mu4e</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-Mu4e is installed by default, so we just have to configure it.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(require 'mu4e)
-(setq mu4e-maildir (expand-file-name "~/Mail/"))
-
-(setq mu4e-drafts-folder "/Drafts")
-(setq mu4e-sent-folder   "/Sent")
-(setq mu4e-trash-folder  "/Deleted")
-
-(setq mu4e-get-mail-command "mbsync -a"
-  mu4e-view-prefer-html t
-  mu4e-update-interval 180
-  mu4e-headers-auto-update t
-  mu4e-compose-signature-auto-include nil
-  mu4e-compose-format-flowed t)
-
-(setq
- user-mail-address "mcotocel@outlook.com"
- user-full-name  "Matei Cotocel")
-
-(setq mu4e-view-show-images t)
-
-(require 'org-mu4e)
-
-(setq org-mu4e-convert-to-html t)
-
-(setq message-send-mail-function 'smtpmail-send-it)
-(setq smtpmail-smtp-server "smtp-mail.outlook.com")
-(setq smtpmail-smtp-service 587 )
-(setq smtpmail-auth-credentials (expand-file-name "~/.authinfo"))
-</pre>
-</div>
-
-<p>
-Replace the name and email address with your name and email address. Then, launch <code>mu4e</code>, sync the maildir, and you should be able to read, receive and send mail.
-</p>
-</div>
-</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matei Cotocel</p>
-<p class="date">Created: 2021-07-03 Sat 15:24</p>
+<p class="date">Created: 2021-07-03 Sat 15:26</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

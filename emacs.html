@@ -1,16 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2021-06-16 Wed 16:05 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2021-07-03 Sat 15:24 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs config</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="Matei Cotocel" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="Matei Cotocel">
 <meta name="description" content="A literate Emacs config written in Org"
- />
+>
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -195,7 +193,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="./style.css"/><!DOCTYPE html><meta name="Website and blog about ricing">
+<link rel="stylesheet" type="text/css" href="./style.css"/>
 <script type="text/javascript">
 // @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
@@ -226,99 +224,101 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org903cc52">1. Intro</a></li>
-<li><a href="#org5e9c6a7">2. General settings</a>
+<li><a href="#orgd6ffcad">1. Intro</a></li>
+<li><a href="#org0b88758">2. General settings</a>
 <ul>
-<li><a href="#orgdef17f7">2.1. Small changes</a></li>
-<li><a href="#orgb64afab">2.2. Package config</a></li>
-<li><a href="#org4b6f0ab">2.3. Git info</a></li>
-<li><a href="#orgc175eeb">2.4. UI elements</a></li>
-<li><a href="#orga6a1718">2.5. Font</a>
+<li><a href="#orgb101e5b">2.1. Small changes</a></li>
+<li><a href="#org7c0f634">2.2. Package config</a></li>
+<li><a href="#org5ac784b">2.3. Git info</a></li>
+<li><a href="#org24f5e14">2.4. UI elements</a></li>
+<li><a href="#org383e063">2.5. Font</a>
 <ul>
-<li><a href="#org014c82a">2.5.1. Normal font</a></li>
-<li><a href="#orga86dce8">2.5.2. Symbol font</a></li>
+<li><a href="#org6f2679a">2.5.1. Normal font</a></li>
+<li><a href="#org4a379da">2.5.2. Symbol font</a></li>
 </ul>
 </li>
-<li><a href="#org1630fd1">2.6. Prettify symbols</a></li>
-<li><a href="#orgcd8baf7">2.7. Line numbers</a></li>
-<li><a href="#org522d64e">2.8. File locations</a></li>
-<li><a href="#org7444f6a">2.9. Miscellaneous minor modes</a></li>
-<li><a href="#org073f875">2.10. New line</a></li>
-<li><a href="#org5524803">2.11. Y/N</a></li>
-<li><a href="#org4b2929f">2.12. Scroll</a></li>
-<li><a href="#org964c987">2.13. Indentation</a></li>
-<li><a href="#org923fbad">2.14. Disabled commands</a></li>
-<li><a href="#org039eb7f">2.15. Shell script mode</a></li>
-<li><a href="#orgd5a5a0b">2.16. Raise focus on macOS</a></li>
+<li><a href="#org29511cb">2.6. Prettify symbols</a></li>
+<li><a href="#orga4520a4">2.7. Line numbers</a></li>
+<li><a href="#org11b6fa3">2.8. File locations</a></li>
+<li><a href="#orgd85524f">2.9. Miscellaneous minor modes</a></li>
+<li><a href="#org14c1e2e">2.10. New line</a></li>
+<li><a href="#org3caa7bb">2.11. Y/N</a></li>
+<li><a href="#org01f136b">2.12. Scroll</a></li>
+<li><a href="#orgc390035">2.13. Indentation</a></li>
+<li><a href="#org2f8f6ce">2.14. Disabled commands</a></li>
+<li><a href="#orgaf2f10e">2.15. Shell script mode</a></li>
 </ul>
 </li>
-<li><a href="#orgb7c30ca">3. Package settings</a>
+<li><a href="#orgdb58f01">3. Package settings</a>
 <ul>
-<li><a href="#orgf285e08">3.1. Path</a></li>
-<li><a href="#org0518fcc">3.2. Evil keybindings</a>
+<li><a href="#org61fb928">3.1. Path</a></li>
+<li><a href="#org07bc632">3.2. Evil keybindings</a>
 <ul>
-<li><a href="#org36d523e">3.2.1. Base</a></li>
-<li><a href="#orge579688">3.2.2. Collection</a></li>
-<li><a href="#orgeb35bcf">3.2.3. Org</a></li>
-<li><a href="#orgdb44833">3.2.4. Leader</a></li>
-<li><a href="#org1377bff">3.2.5. Additional keybindings</a></li>
-<li><a href="#org79f209a">3.2.6. Miscellaneous settings</a></li>
+<li><a href="#org20918cb">3.2.1. Base</a></li>
+<li><a href="#org862cee1">3.2.2. Collection</a></li>
+<li><a href="#org4a2047f">3.2.3. Org</a></li>
+<li><a href="#org248a8a4">3.2.4. Leader</a></li>
+<li><a href="#orgbd811c9">3.2.5. Additional keybindings</a></li>
+<li><a href="#orgda7254d">3.2.6. Miscellaneous settings</a></li>
 </ul>
 </li>
-<li><a href="#orgb552be4">3.3. Which-key</a></li>
-<li><a href="#org667b26e">3.4. Ivy</a></li>
-<li><a href="#org6aa1b17">3.5. Dashboard</a></li>
-<li><a href="#org3d2749d">3.6. File tree</a></li>
-<li><a href="#org6a270e1">3.7. Magit</a></li>
-<li><a href="#orgbc96019">3.8. Parentheses</a>
+<li><a href="#org8410376">3.3. Which-key</a></li>
+<li><a href="#orgf8e6a70">3.4. Ivy</a></li>
+<li><a href="#orgd021cef">3.5. Dashboard</a></li>
+<li><a href="#orgfa17538">3.6. File tree</a></li>
+<li><a href="#org2510353">3.7. Magit</a></li>
+<li><a href="#org06a32ab">3.8. Parentheses</a>
 <ul>
-<li><a href="#orgcd388dd">3.8.1. Smart parentheses</a></li>
-<li><a href="#orgf9b80a7">3.8.2. Rainbow parentheses</a></li>
+<li><a href="#orgc01721d">3.8.1. Smart parentheses</a></li>
+<li><a href="#org5cac354">3.8.2. Rainbow parentheses</a></li>
 </ul>
 </li>
-<li><a href="#org53523bb">3.9. Terminal</a></li>
-<li><a href="#orgb17a821">3.10. Icons</a></li>
-<li><a href="#org677ab3d">3.11. Modeline</a></li>
-<li><a href="#orgb4ea3cb">3.12. Undo-tree</a></li>
-<li><a href="#org98adf9b">3.13. Formatter</a></li>
-<li><a href="#org8bf072d">3.14. Colorscheme</a></li>
-<li><a href="#orgd3a66d3">3.15. Mail</a></li>
-<li><a href="#org9337e5d">3.16. Chat</a>
+<li><a href="#orgc76b60d">3.9. Terminal</a></li>
+<li><a href="#org29d38f5">3.10. Icons</a></li>
+<li><a href="#org89b1b61">3.11. Modeline</a></li>
+<li><a href="#orgf000b98">3.12. Undo-tree</a></li>
+<li><a href="#org33b84c2">3.13. Formatter</a></li>
+<li><a href="#org29034d8">3.14. Colorscheme</a></li>
+<li><a href="#org62cfd1e">3.15. Mail</a></li>
+<li><a href="#org07a05f7">3.16. Chat</a>
 <ul>
-<li><a href="#orgdc5e430">3.16.1. Irc</a></li>
-<li><a href="#org177d614">3.16.2. Matrix</a></li>
-<li><a href="#org1eac0bd">3.16.3. Discord rice presence</a></li>
+<li><a href="#orgb1627dc">3.16.1. Irc</a></li>
+<li><a href="#org2cb9fd0">3.16.2. Matrix</a></li>
+<li><a href="#org2fcab34">3.16.3. Discord rice presence</a></li>
 </ul>
 </li>
-<li><a href="#org33b5258">3.17. RSS</a></li>
-<li><a href="#org26b6100">3.18. LSP</a></li>
-<li><a href="#org8e4d817">3.19. Projectile</a></li>
-<li><a href="#orga97bc92">3.20. Perspective</a></li>
+<li><a href="#org20b53e0">3.17. RSS</a></li>
+<li><a href="#org27d0845">3.18. EMMS</a></li>
+<li><a href="#orgac0e219">3.19. LSP</a></li>
+<li><a href="#org80fcad3">3.20. Flycheck</a></li>
+<li><a href="#org263580e">3.21. Projectile</a></li>
 </ul>
 </li>
-<li><a href="#orgec9c159">4. Org mode</a>
+<li><a href="#org961fa17">4. Org mode</a>
 <ul>
-<li><a href="#org262f3a4">4.1. Files locations</a></li>
-<li><a href="#org1a71f72">4.2. Exporting</a></li>
-<li><a href="#org408d8b6">4.3. Bullets</a></li>
-<li><a href="#org831f949">4.4. UI</a></li>
-<li><a href="#org55f16f4">4.5. Keywords</a></li>
-<li><a href="#orge95821a">4.6. Org roam</a></li>
-<li><a href="#org875c6f1">4.7. Org capture</a></li>
-<li><a href="#org315ddbd">4.8. Babel</a>
+<li><a href="#org5ea3e5e">4.1. Files locations</a></li>
+<li><a href="#org8254809">4.2. Exporting</a></li>
+<li><a href="#org72a9943">4.3. Bullets</a></li>
+<li><a href="#org1425fb5">4.4. UI</a></li>
+<li><a href="#org1a5e7db">4.5. Keywords</a></li>
+<li><a href="#org8227001">4.6. Org roam</a></li>
+<li><a href="#orgf5be7e2">4.7. Org capture</a></li>
+<li><a href="#org16d2958">4.8. Babel</a>
 <ul>
-<li><a href="#org07ef236">4.8.1. Go support</a></li>
+<li><a href="#org61cc8e2">4.8.1. Go support</a></li>
 </ul>
 </li>
-<li><a href="#org92e2174">4.9. Faces</a></li>
+<li><a href="#org44380b1">4.9. Faces</a></li>
+<li><a href="#org3c0d1b0">4.10. Present</a></li>
 </ul>
 </li>
+<li><a href="#org495330c">5. Functions</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org903cc52" class="outline-2">
-<h2 id="org903cc52"><span class="section-number-2">1</span> Intro</h2>
+<div id="outline-container-orgd6ffcad" class="outline-2">
+<h2 id="orgd6ffcad"><span class="section-number-2">1</span> Intro</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Emacs is not just a mere text editor. It's a Lisp machine with text editing capabilities. This means anything you can think of, Emacs can do it. Of course, you have text editing capabilities. But you can also use it as a Git frontend. as an IRC client, an RSS reader. Such is the extensible of Emacs.
@@ -330,12 +330,12 @@ In this Org document, you'll find my literate Emacs configuration. I wouldn't ad
 </div>
 </div>
 
-<div id="outline-container-org5e9c6a7" class="outline-2">
-<h2 id="org5e9c6a7"><span class="section-number-2">2</span> General settings</h2>
+<div id="outline-container-org0b88758" class="outline-2">
+<h2 id="org0b88758"><span class="section-number-2">2</span> General settings</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgdef17f7" class="outline-3">
-<h3 id="orgdef17f7"><span class="section-number-3">2.1</span> Small changes</h3>
+<div id="outline-container-orgb101e5b" class="outline-3">
+<h3 id="orgb101e5b"><span class="section-number-3">2.1</span> Small changes</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 We add the load path for pieces of lisp code, and change the warning level to emergency so we don't get distracted. We also load a <code>private.el</code> file, where I store passwords.
@@ -351,11 +351,11 @@ We add the load path for pieces of lisp code, and change the warning level to em
 </div>
 </div>
 
-<div id="outline-container-orgb64afab" class="outline-3">
-<h3 id="orgb64afab"><span class="section-number-3">2.2</span> Package config</h3>
+<div id="outline-container-org7c0f634" class="outline-3">
+<h3 id="org7c0f634"><span class="section-number-3">2.2</span> Package config</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-We setup melpa, use-package, and straight.el for installing package later on. Melpa is better than elpa since it has a lot more packages than elpa. Use-package is pretty useful since packages can be automatically installed and lazy-loaded. Straight.el is for downloading packages from git.
+We setup melpa, use-package, and straight.el for installing package later on. Melpa is better than elpa since it has a lot more packages than elpa. Use-package is pretty useful since packages can be automatically installed and lazy-loaded. Straight.el is for downloading packages from git. We also install a package to update installed packages
 </p>
 
 <div class="org-src-container">
@@ -389,13 +389,20 @@ We setup melpa, use-package, and straight.el for installing package later on. Me
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 (setq package-enable-at-startup nil)
+
+(use-package auto-package-update
+   :ensure t
+   :config
+   (setq auto-package-update-delete-old-versions t
+         auto-package-update-interval 4)
+   (auto-package-update-maybe))
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org4b6f0ab" class="outline-3">
-<h3 id="org4b6f0ab"><span class="section-number-3">2.3</span> Git info</h3>
+<div id="outline-container-org5ac784b" class="outline-3">
+<h3 id="org5ac784b"><span class="section-number-3">2.3</span> Git info</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 We set up our username and email for git.
@@ -411,8 +418,8 @@ We set up our username and email for git.
 </div>
 </div>
 
-<div id="outline-container-orgc175eeb" class="outline-3">
-<h3 id="orgc175eeb"><span class="section-number-3">2.4</span> UI elements</h3>
+<div id="outline-container-org24f5e14" class="outline-3">
+<h3 id="org24f5e14"><span class="section-number-3">2.4</span> UI elements</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 We remove unnecessary UI elements, like the menu bar, scroll bar, and tool bar. These are useless, I don't like them, I don't want them.
@@ -431,12 +438,12 @@ We remove unnecessary UI elements, like the menu bar, scroll bar, and tool bar. 
 </div>
 </div>
 
-<div id="outline-container-orga6a1718" class="outline-3">
-<h3 id="orga6a1718"><span class="section-number-3">2.5</span> Font</h3>
+<div id="outline-container-org383e063" class="outline-3">
+<h3 id="org383e063"><span class="section-number-3">2.5</span> Font</h3>
 <div class="outline-text-3" id="text-2-5">
 </div>
-<div id="outline-container-org014c82a" class="outline-4">
-<h4 id="org014c82a"><span class="section-number-4">2.5.1</span> Normal font</h4>
+<div id="outline-container-org6f2679a" class="outline-4">
+<h4 id="org6f2679a"><span class="section-number-4">2.5.1</span> Normal font</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <p>
 Here we set a nice font, because if I'm going to be staring at code for hours, I want it to look good. Change the font size to whatever you want.
@@ -449,8 +456,8 @@ Here we set a nice font, because if I'm going to be staring at code for hours, I
 </div>
 </div>
 
-<div id="outline-container-orga86dce8" class="outline-4">
-<h4 id="orga86dce8"><span class="section-number-4">2.5.2</span> Symbol font</h4>
+<div id="outline-container-org4a379da" class="outline-4">
+<h4 id="org4a379da"><span class="section-number-4">2.5.2</span> Symbol font</h4>
 <div class="outline-text-4" id="text-2-5-2">
 <p>
 We also need to set a symbol font. Here I use Twemoji, since it looks pretty good.
@@ -464,8 +471,8 @@ We also need to set a symbol font. Here I use Twemoji, since it looks pretty goo
 </div>
 </div>
 
-<div id="outline-container-org1630fd1" class="outline-3">
-<h3 id="org1630fd1"><span class="section-number-3">2.6</span> Prettify symbols</h3>
+<div id="outline-container-org29511cb" class="outline-3">
+<h3 id="org29511cb"><span class="section-number-3">2.6</span> Prettify symbols</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 This replaces some text with icons.
@@ -513,8 +520,8 @@ This replaces some text with icons.
 </div>
 </div>
 
-<div id="outline-container-orgcd8baf7" class="outline-3">
-<h3 id="orgcd8baf7"><span class="section-number-3">2.7</span> Line numbers</h3>
+<div id="outline-container-orga4520a4" class="outline-3">
+<h3 id="orga4520a4"><span class="section-number-3">2.7</span> Line numbers</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 Line numbers are very useful. Relative line numbers are even more so, since you don't do much maths with them.
@@ -546,8 +553,8 @@ Sometimes line numbers can be distracting, so we disable them for certain modes
 </div>
 </div>
 
-<div id="outline-container-org522d64e" class="outline-3">
-<h3 id="org522d64e"><span class="section-number-3">2.8</span> File locations</h3>
+<div id="outline-container-org11b6fa3" class="outline-3">
+<h3 id="org11b6fa3"><span class="section-number-3">2.8</span> File locations</h3>
 <div class="outline-text-3" id="text-2-8">
 <p>
 To keep thing organized, we set the locations of different files here.
@@ -572,8 +579,8 @@ To keep thing organized, we set the locations of different files here.
 </div>
 </div>
 
-<div id="outline-container-org7444f6a" class="outline-3">
-<h3 id="org7444f6a"><span class="section-number-3">2.9</span> Miscellaneous minor modes</h3>
+<div id="outline-container-orgd85524f" class="outline-3">
+<h3 id="orgd85524f"><span class="section-number-3">2.9</span> Miscellaneous minor modes</h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
 These are some useful minor modes that I tend to use.
@@ -588,8 +595,8 @@ These are some useful minor modes that I tend to use.
 </div>
 </div>
 
-<div id="outline-container-org073f875" class="outline-3">
-<h3 id="org073f875"><span class="section-number-3">2.10</span> New line</h3>
+<div id="outline-container-org14c1e2e" class="outline-3">
+<h3 id="org14c1e2e"><span class="section-number-3">2.10</span> New line</h3>
 <div class="outline-text-3" id="text-2-10">
 <p>
 Style guides usually say there should be an empty line at the end of a file, so we enable this here.
@@ -602,8 +609,8 @@ Style guides usually say there should be an empty line at the end of a file, so 
 </div>
 </div>
 
-<div id="outline-container-org5524803" class="outline-3">
-<h3 id="org5524803"><span class="section-number-3">2.11</span> Y/N</h3>
+<div id="outline-container-org3caa7bb" class="outline-3">
+<h3 id="org3caa7bb"><span class="section-number-3">2.11</span> Y/N</h3>
 <div class="outline-text-3" id="text-2-11">
 <p>
 When Emacs prompts us, you need to fully type <i>yes</i> or <i>no</i>. This replaces it with <i>y</i> or <i>n.</i>
@@ -616,8 +623,8 @@ When Emacs prompts us, you need to fully type <i>yes</i> or <i>no</i>. This repl
 </div>
 </div>
 
-<div id="outline-container-org4b2929f" class="outline-3">
-<h3 id="org4b2929f"><span class="section-number-3">2.12</span> Scroll</h3>
+<div id="outline-container-org01f136b" class="outline-3">
+<h3 id="org01f136b"><span class="section-number-3">2.12</span> Scroll</h3>
 <div class="outline-text-3" id="text-2-12">
 <p>
 Better and smoother scroll that <i>doesn't</i> make your eyes hurt.
@@ -636,8 +643,8 @@ Better and smoother scroll that <i>doesn't</i> make your eyes hurt.
 </div>
 </div>
 
-<div id="outline-container-org964c987" class="outline-3">
-<h3 id="org964c987"><span class="section-number-3">2.13</span> Indentation</h3>
+<div id="outline-container-orgc390035" class="outline-3">
+<h3 id="orgc390035"><span class="section-number-3">2.13</span> Indentation</h3>
 <div class="outline-text-3" id="text-2-13">
 <p>
 Here we configure indentation. I prefer using tabs, but I convert them to spaces.
@@ -652,8 +659,8 @@ Here we configure indentation. I prefer using tabs, but I convert them to spaces
 </div>
 </div>
 
-<div id="outline-container-org923fbad" class="outline-3">
-<h3 id="org923fbad"><span class="section-number-3">2.14</span> Disabled commands</h3>
+<div id="outline-container-org2f8f6ce" class="outline-3">
+<h3 id="org2f8f6ce"><span class="section-number-3">2.14</span> Disabled commands</h3>
 <div class="outline-text-3" id="text-2-14">
 <p>
 Yes Emacs, I'm <i>sure</i> I want to use the command. Or even better, why don't we enable them all?
@@ -666,8 +673,8 @@ Yes Emacs, I'm <i>sure</i> I want to use the command. Or even better, why don't 
 </div>
 </div>
 
-<div id="outline-container-org039eb7f" class="outline-3">
-<h3 id="org039eb7f"><span class="section-number-3">2.15</span> Shell script mode</h3>
+<div id="outline-container-orgaf2f10e" class="outline-3">
+<h3 id="orgaf2f10e"><span class="section-number-3">2.15</span> Shell script mode</h3>
 <div class="outline-text-3" id="text-2-15">
 <p>
 I edit PKGBUILD files (for pacman) and PACKAGE files (for shade) quite a lot, and they're basically shell scripts.
@@ -680,36 +687,14 @@ I edit PKGBUILD files (for pacman) and PACKAGE files (for shade) quite a lot, an
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgd5a5a0b" class="outline-3">
-<h3 id="orgd5a5a0b"><span class="section-number-3">2.16</span> Raise focus on macOS</h3>
-<div class="outline-text-3" id="text-2-16">
-<p>
-When using emacsclient on macOS, the new frame isn't automatically focused. This helps focus it.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(when (featurep 'ns)
-(defun ns-raise-emacs ()
-  "Raise Emacs."
-  (ns-do-applescript "tell application \"Emacs\" to activate"))(defun ns-raise-emacs-with-frame (frame)
-  "Raise Emacs and select the provided frame."
-  (with-selected-frame frame
-    (when (display-graphic-p)
-      (ns-raise-emacs))))(add-hook 'after-make-frame-functions 'ns-raise-emacs-with-frame)(when (display-graphic-p)
-(ns-raise-emacs)))
-</pre>
-</div>
-</div>
-</div>
 </div>
 
-<div id="outline-container-orgb7c30ca" class="outline-2">
-<h2 id="orgb7c30ca"><span class="section-number-2">3</span> Package settings</h2>
+<div id="outline-container-orgdb58f01" class="outline-2">
+<h2 id="orgdb58f01"><span class="section-number-2">3</span> Package settings</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgf285e08" class="outline-3">
-<h3 id="orgf285e08"><span class="section-number-3">3.1</span> Path</h3>
+<div id="outline-container-org61fb928" class="outline-3">
+<h3 id="org61fb928"><span class="section-number-3">3.1</span> Path</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 First we install a package to set the path for macOS, since for some reason it doesn't work out of the box.
@@ -724,16 +709,16 @@ First we install a package to set the path for macOS, since for some reason it d
 </div>
 </div>
 
-<div id="outline-container-org0518fcc" class="outline-3">
-<h3 id="org0518fcc"><span class="section-number-3">3.2</span> Evil keybindings</h3>
+<div id="outline-container-org07bc632" class="outline-3">
+<h3 id="org07bc632"><span class="section-number-3">3.2</span> Evil keybindings</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Here we install and configure evil, since I <i>cannot</i> use the default Emacs keys. Evil is the only way I've managed to move to Emacs. The Vim key bindings are a <i>lot</i> better than the Emacs keybindings. evil-collection is for miscellaneous minor modes, evil-org for org mode, and evil leader adds a leader key.
 </p>
 </div>
 
-<div id="outline-container-org36d523e" class="outline-4">
-<h4 id="org36d523e"><span class="section-number-4">3.2.1</span> Base</h4>
+<div id="outline-container-org20918cb" class="outline-4">
+<h4 id="org20918cb"><span class="section-number-4">3.2.1</span> Base</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 This is the main evil package, that allows you to use vim keybindings.
@@ -751,8 +736,8 @@ This is the main evil package, that allows you to use vim keybindings.
 </div>
 </div>
 
-<div id="outline-container-orge579688" class="outline-4">
-<h4 id="orge579688"><span class="section-number-4">3.2.2</span> Collection</h4>
+<div id="outline-container-org862cee1" class="outline-4">
+<h4 id="org862cee1"><span class="section-number-4">3.2.2</span> Collection</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 This package adds vim keybindings for miscellaneous minor modes, such as dired and mu4e.
@@ -768,16 +753,15 @@ This package adds vim keybindings for miscellaneous minor modes, such as dired a
 </div>
 </div>
 
-<div id="outline-container-orgeb35bcf" class="outline-4">
-<h4 id="orgeb35bcf"><span class="section-number-4">3.2.3</span> Org</h4>
+<div id="outline-container-org4a2047f" class="outline-4">
+<h4 id="org4a2047f"><span class="section-number-4">3.2.3</span> Org</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 For some reason evil-collection doesn't include org bindings, so we install another package.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">
-(use-package evil-org
+<pre class="src src-emacs-lisp">(use-package evil-org
   :after org
   :config
   (require 'evil-org-agenda)
@@ -786,9 +770,8 @@ For some reason evil-collection doesn't include org bindings, so we install anot
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgdb44833" class="outline-4">
-<h4 id="orgdb44833"><span class="section-number-4">3.2.4</span> Leader</h4>
+<div id="outline-container-org248a8a4" class="outline-4">
+<h4 id="org248a8a4"><span class="section-number-4">3.2.4</span> Leader</h4>
 <div class="outline-text-4" id="text-3-2-4">
 <p>
 This adds a leader key to Emacs, which is <i>incredibly</i> useful.
@@ -803,15 +786,21 @@ This adds a leader key to Emacs, which is <i>incredibly</i> useful.
     ;; General
     "&lt;SPC&gt;" 'counsel-M-x
     ".f" 'counsel-grep-or-swiper
-    ".u" 'undo-tree-visualize
     ".q" 'delete-frame
+    ;; Undo
+    "uv" 'undo-tree-visualize
+    "uu" 'undo-tree-undo
+    "ur" 'undo-tree-redo
+    "uc" 'counsel-yank-pop
     ;; Files
     "fr" 'counsel-recentf
+    "fb" 'counsel-bookmark
     "ff" 'counsel-find-file
     "fd" 'counsel-dired
     ;; Bufffers
     "bv" 'split-window-right
     "bh" 'split-window-below
+    "bd" 'kill-current-buffer
     ;; Projectile
     "pf" 'projectile-find-file
     "pp" 'projectile-switch-project
@@ -838,9 +827,16 @@ This adds a leader key to Emacs, which is <i>incredibly</i> useful.
     "obb" 'org-babel-execute-buffer
     "obl" 'org-babel-load-file
     ;; Workgroups
-    "wc" 'persp-state-save
-    "wr" 'persp-rename
-    "ws" 'persp-switch
+    "wa" 'ivy-push-view
+    "wd" 'ivy-pop-view
+    "ws" 'ivy-switch-view
+    ;; Help
+    "hh" 'help
+    "hk" 'describe-key
+    "hv" 'describe-variable
+    "hf" 'describe-function
+    "hs" 'describe-symbol
+    "hm" 'describe-mode
     ;; Magit
     "gs" 'magit-status))
 </pre>
@@ -848,8 +844,8 @@ This adds a leader key to Emacs, which is <i>incredibly</i> useful.
 </div>
 </div>
 
-<div id="outline-container-org1377bff" class="outline-4">
-<h4 id="org1377bff"><span class="section-number-4">3.2.5</span> Additional keybindings</h4>
+<div id="outline-container-orgbd811c9" class="outline-4">
+<h4 id="orgbd811c9"><span class="section-number-4">3.2.5</span> Additional keybindings</h4>
 <div class="outline-text-4" id="text-3-2-5">
 <p>
 Here I bind some extra keybindings for evil mode.
@@ -859,21 +855,29 @@ Here I bind some extra keybindings for evil mode.
 <pre class="src src-emacs-lisp">
 (define-key evil-normal-state-map (kbd "M-s") 'save-buffer)
 (define-key evil-normal-state-map (kbd "M-q") 'delete-window)
-(define-key evil-normal-state-map (kbd "M-w") 'kill-this-buffer)
+(define-key evil-normal-state-map (kbd "M-w") 'kill-current-buffer)
+
 (define-key evil-normal-state-map (kbd "M-x") 'counsel-M-x)
-(define-key evil-normal-state-map (kbd "M-/") 'counsel-find-file)
 (define-key evil-normal-state-map (kbd "&lt;C-tab&gt;") 'ivy-switch-buffer)
-(define-key evil-normal-state-map (kbd "M-u") 'counsel-yank-pop)
+
 (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
 (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
 (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
 (define-key evil-normal-state-map (kbd "M-j") 'evil-scroll-down)
 (define-key evil-normal-state-map (kbd "M-k") 'evil-scroll-up)
-(define-key evil-normal-state-map (kbd "C-r") 'undo-tree-redo)
-(define-key evil-normal-state-map (kbd "M-t") 'neotree-toggle)
+
 (define-key evil-normal-state-map "u" 'undo-tree-undo)
+(define-key evil-normal-state-map (kbd "C-r") 'undo-tree-redo)
+
+(define-key evil-normal-state-map (kbd "M-t") 'neotree-toggle)
+(define-key evil-normal-state-map (kbd "&lt;C-return&gt;") 'shr-browse-url)
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+
+(define-key evil-normal-state-map (kbd "C-=") 'text-scale-increase)
+(define-key evil-normal-state-map (kbd "C--") 'text-scale-decrease)
+(define-key evil-normal-state-map (kbd "C-0") 'text-scale-adjust)
+
 (define-key evil-normal-state-map (kbd "&lt;remap&gt; &lt;evil-next-line&gt;") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "&lt;remap&gt; &lt;evil-previous-line&gt;") 'evil-previous-visual-line)
 (define-key evil-motion-state-map (kbd "&lt;remap&gt; &lt;evil-next-line&gt;") 'evil-next-visual-line)
@@ -884,12 +888,12 @@ Here I bind some extra keybindings for evil mode.
 </div>
 </div>
 
-<div id="outline-container-org79f209a" class="outline-4">
-<h4 id="org79f209a"><span class="section-number-4">3.2.6</span> Miscellaneous settings</h4>
+<div id="outline-container-orgda7254d" class="outline-4">
+<h4 id="orgda7254d"><span class="section-number-4">3.2.6</span> Miscellaneous settings</h4>
 <div class="outline-text-4" id="text-3-2-6">
 </div>
 <ol class="org-ol">
-<li><a id="org5da3163"></a>Cursor shapes<br />
+<li><a id="org3c67401"></a>Cursor shapes<br>
 <div class="outline-text-5" id="text-3-2-6-1">
 <p>
 Set the cursor shape for different evil states.
@@ -909,7 +913,7 @@ Set the cursor shape for different evil states.
 </div>
 </li>
 
-<li><a id="org0e5e114"></a>Small additions<br />
+<li><a id="org818485a"></a>Small additions<br>
 <div class="outline-text-5" id="text-3-2-6-2">
 <p>
 We want <i>some</i> Emacs in evil, so we change a few settings here.
@@ -930,8 +934,8 @@ We want <i>some</i> Emacs in evil, so we change a few settings here.
 </div>
 </div>
 
-<div id="outline-container-orgb552be4" class="outline-3">
-<h3 id="orgb552be4"><span class="section-number-3">3.3</span> Which-key</h3>
+<div id="outline-container-org8410376" class="outline-3">
+<h3 id="org8410376"><span class="section-number-3">3.3</span> Which-key</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 We install which-key in case we ever forget any keybinds.
@@ -947,11 +951,11 @@ We install which-key in case we ever forget any keybinds.
 </div>
 </div>
 
-<div id="outline-container-org667b26e" class="outline-3">
-<h3 id="org667b26e"><span class="section-number-3">3.4</span> Ivy</h3>
+<div id="outline-container-orgf8e6a70" class="outline-3">
+<h3 id="orgf8e6a70"><span class="section-number-3">3.4</span> Ivy</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
-Ivy helps with better completion and to replace the default M-x. Counsel adds a few things, ivy-posframe and ivy-rich make it look better.
+Ivy helps with better completion and to replace the default M-x. Counsel adds a few things, ivy-rich makes it look better.
 </p>
 
 <div class="org-src-container">
@@ -967,14 +971,14 @@ Ivy helps with better completion and to replace the default M-x. Counsel adds a 
   :after ivy
   :config (counsel-mode t))
 
-(use-package ivy-posframe
-  :after ivy
-  :config
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
-  (setq ivy-posframe-parameters
-    '((left-fringe . 30)
-      (right-fringe . 30)))
-  (ivy-posframe-mode t))
+;; (use-package ivy-posframe
+;;   :after ivy
+;;   :config
+;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
+;;   (setq ivy-posframe-parameters
+;;     '((left-fringe . 30)
+;;       (right-fringe . 30)))
+;;   (ivy-posframe-mode t))
 
 (use-package all-the-icons-ivy-rich
   :init (all-the-icons-ivy-rich-mode 1))
@@ -986,8 +990,8 @@ Ivy helps with better completion and to replace the default M-x. Counsel adds a 
 </div>
 </div>
 
-<div id="outline-container-org6aa1b17" class="outline-3">
-<h3 id="org6aa1b17"><span class="section-number-3">3.5</span> Dashboard</h3>
+<div id="outline-container-orgd021cef" class="outline-3">
+<h3 id="orgd021cef"><span class="section-number-3">3.5</span> Dashboard</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 The default startup screen is bland, let's replace it with a nice dashboard. We also add some buttons, and make it more simplistic.
@@ -1045,8 +1049,8 @@ The default startup screen is bland, let's replace it with a nice dashboard. We 
 </div>
 </div>
 
-<div id="outline-container-org3d2749d" class="outline-3">
-<h3 id="org3d2749d"><span class="section-number-3">3.6</span> File tree</h3>
+<div id="outline-container-orgfa17538" class="outline-3">
+<h3 id="orgfa17538"><span class="section-number-3">3.6</span> File tree</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 Neotree is a cool file tree, so we install it. Although I usually use dired, neotree can be useful if you need a tree layout.
@@ -1069,8 +1073,8 @@ Neotree is a cool file tree, so we install it. Although I usually use dired, neo
 </div>
 </div>
 
-<div id="outline-container-org6a270e1" class="outline-3">
-<h3 id="org6a270e1"><span class="section-number-3">3.7</span> Magit</h3>
+<div id="outline-container-org2510353" class="outline-3">
+<h3 id="org2510353"><span class="section-number-3">3.7</span> Magit</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 Magit is the best git client, and it is a <i>must</i>. Less typing, less time spent using git, and more coding.
@@ -1084,12 +1088,12 @@ Magit is the best git client, and it is a <i>must</i>. Less typing, less time sp
 </div>
 </div>
 
-<div id="outline-container-orgbc96019" class="outline-3">
-<h3 id="orgbc96019"><span class="section-number-3">3.8</span> Parentheses</h3>
+<div id="outline-container-org06a32ab" class="outline-3">
+<h3 id="org06a32ab"><span class="section-number-3">3.8</span> Parentheses</h3>
 <div class="outline-text-3" id="text-3-8">
 </div>
-<div id="outline-container-orgcd388dd" class="outline-4">
-<h4 id="orgcd388dd"><span class="section-number-4">3.8.1</span> Smart parentheses</h4>
+<div id="outline-container-orgc01721d" class="outline-4">
+<h4 id="orgc01721d"><span class="section-number-4">3.8.1</span> Smart parentheses</h4>
 <div class="outline-text-4" id="text-3-8-1">
 <p>
 Most code editors automatically match parentheses, but Emacs doesn't do this, so we install a package.
@@ -1097,14 +1101,15 @@ Most code editors automatically match parentheses, but Emacs doesn't do this, so
 
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package smartparens
-  :config (smartparens-global-mode))
+  :config (smartparens-global-mode)
+  (show-smartparens-mode))
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgf9b80a7" class="outline-4">
-<h4 id="orgf9b80a7"><span class="section-number-4">3.8.2</span> Rainbow parentheses</h4>
+<div id="outline-container-org5cac354" class="outline-4">
+<h4 id="org5cac354"><span class="section-number-4">3.8.2</span> Rainbow parentheses</h4>
 <div class="outline-text-4" id="text-3-8-2">
 <p>
 Most editors also automatically color matching parentheses, but again, we need to install a package for this.
@@ -1120,8 +1125,8 @@ Most editors also automatically color matching parentheses, but again, we need t
 </div>
 </div>
 
-<div id="outline-container-org53523bb" class="outline-3">
-<h3 id="org53523bb"><span class="section-number-3">3.9</span> Terminal</h3>
+<div id="outline-container-orgc76b60d" class="outline-3">
+<h3 id="orgc76b60d"><span class="section-number-3">3.9</span> Terminal</h3>
 <div class="outline-text-3" id="text-3-9">
 <p>
 The default builtin terminal for Emacs is slow, so we install vterm instead
@@ -1134,8 +1139,8 @@ The default builtin terminal for Emacs is slow, so we install vterm instead
 </div>
 </div>
 
-<div id="outline-container-orgb17a821" class="outline-3">
-<h3 id="orgb17a821"><span class="section-number-3">3.10</span> Icons</h3>
+<div id="outline-container-org29d38f5" class="outline-3">
+<h3 id="org29d38f5"><span class="section-number-3">3.10</span> Icons</h3>
 <div class="outline-text-3" id="text-3-10">
 <p>
 We need all-the-icons for some packages, so let's install it.
@@ -1148,8 +1153,8 @@ We need all-the-icons for some packages, so let's install it.
 </div>
 </div>
 
-<div id="outline-container-org677ab3d" class="outline-3">
-<h3 id="org677ab3d"><span class="section-number-3">3.11</span> Modeline</h3>
+<div id="outline-container-org89b1b61" class="outline-3">
+<h3 id="org89b1b61"><span class="section-number-3">3.11</span> Modeline</h3>
 <div class="outline-text-3" id="text-3-11">
 <p>
 The default modeline is ugly, this package replaces it with one that looks like the doom modeline.
@@ -1165,8 +1170,8 @@ The default modeline is ugly, this package replaces it with one that looks like 
 </div>
 </div>
 
-<div id="outline-container-orgb4ea3cb" class="outline-3">
-<h3 id="orgb4ea3cb"><span class="section-number-3">3.12</span> Undo-tree</h3>
+<div id="outline-container-orgf000b98" class="outline-3">
+<h3 id="orgf000b98"><span class="section-number-3">3.12</span> Undo-tree</h3>
 <div class="outline-text-3" id="text-3-12">
 <p>
 We want to visualize undo history better, so we install undo-tree.
@@ -1183,8 +1188,8 @@ We want to visualize undo history better, so we install undo-tree.
 </div>
 </div>
 
-<div id="outline-container-org98adf9b" class="outline-3">
-<h3 id="org98adf9b"><span class="section-number-3">3.13</span> Formatter</h3>
+<div id="outline-container-org33b84c2" class="outline-3">
+<h3 id="org33b84c2"><span class="section-number-3">3.13</span> Formatter</h3>
 <div class="outline-text-3" id="text-3-13">
 <p>
 Let's install a formatter to format our horrible code.
@@ -1198,8 +1203,8 @@ Let's install a formatter to format our horrible code.
 </div>
 </div>
 
-<div id="outline-container-org8bf072d" class="outline-3">
-<h3 id="org8bf072d"><span class="section-number-3">3.14</span> Colorscheme</h3>
+<div id="outline-container-org29034d8" class="outline-3">
+<h3 id="org29034d8"><span class="section-number-3">3.14</span> Colorscheme</h3>
 <div class="outline-text-3" id="text-3-14">
 <p>
 My colorscheme uses doom-themes as a base, so we have to install it.
@@ -1218,15 +1223,16 @@ My colorscheme uses doom-themes as a base, so we have to install it.
 </div>
 </div>
 
-<div id="outline-container-orgd3a66d3" class="outline-3">
-<h3 id="orgd3a66d3"><span class="section-number-3">3.15</span> Mail</h3>
+<div id="outline-container-org62cfd1e" class="outline-3">
+<h3 id="org62cfd1e"><span class="section-number-3">3.15</span> Mail</h3>
 <div class="outline-text-3" id="text-3-15">
 <p>
 Emacs can do everything, including manage mail.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(require 'mu4e)
+<pre class="src src-emacs-lisp">(add-to-list 'load-path "/nix/store/iqwc7yp6pffda0zxxvlhrcww3bvn5lcq-mu-1.4.15/share/emacs/site-lisp/mu4e/")
+(require 'mu4e)
 (setq mu4e-maildir (expand-file-name "~/Mail/"))
 
 (setq mu4e-drafts-folder "/Drafts")
@@ -1259,12 +1265,12 @@ Emacs can do everything, including manage mail.
 </div>
 </div>
 
-<div id="outline-container-org9337e5d" class="outline-3">
-<h3 id="org9337e5d"><span class="section-number-3">3.16</span> Chat</h3>
+<div id="outline-container-org07a05f7" class="outline-3">
+<h3 id="org07a05f7"><span class="section-number-3">3.16</span> Chat</h3>
 <div class="outline-text-3" id="text-3-16">
 </div>
-<div id="outline-container-orgdc5e430" class="outline-4">
-<h4 id="orgdc5e430"><span class="section-number-4">3.16.1</span> Irc</h4>
+<div id="outline-container-orgb1627dc" class="outline-4">
+<h4 id="orgb1627dc"><span class="section-number-4">3.16.1</span> Irc</h4>
 <div class="outline-text-4" id="text-3-16-1">
 <p>
 It also has an IRC client available, so let's install and configure it.
@@ -1285,14 +1291,13 @@ It also has an IRC client available, so let's install and configure it.
    (concat (propertize (concat (buffer-name) "&gt;")
                        'face 'circe-prompt-face)
            " ")))
-
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org177d614" class="outline-4">
-<h4 id="org177d614"><span class="section-number-4">3.16.2</span> Matrix</h4>
+<div id="outline-container-org2cb9fd0" class="outline-4">
+<h4 id="org2cb9fd0"><span class="section-number-4">3.16.2</span> Matrix</h4>
 <div class="outline-text-4" id="text-3-16-2">
 <p>
 I also install a matrix client.
@@ -1306,22 +1311,21 @@ I also install a matrix client.
 </div>
 </div>
 
-<div id="outline-container-org1eac0bd" class="outline-4">
-<h4 id="org1eac0bd"><span class="section-number-4">3.16.3</span> Discord rice presence</h4>
+<div id="outline-container-org2fcab34" class="outline-4">
+<h4 id="org2fcab34"><span class="section-number-4">3.16.3</span> Discord rice presence</h4>
 <div class="outline-text-4" id="text-3-16-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package elcord
   :config
-  (elcord-mode)
-  (elcord-use-major-mode-as-main-icon t))
+  (elcord-mode))
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org33b5258" class="outline-3">
-<h3 id="org33b5258"><span class="section-number-3">3.17</span> RSS</h3>
+<div id="outline-container-org20b53e0" class="outline-3">
+<h3 id="org20b53e0"><span class="section-number-3">3.17</span> RSS</h3>
 <div class="outline-text-3" id="text-3-17">
 <p>
 I read RSS feeds, so we're going to configure a reader.
@@ -1340,14 +1344,33 @@ I read RSS feeds, so we're going to configure a reader.
   (setq elfeed-dashboard-file "~/Org/elfeed-dashboard.org")
   (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links))
 (evil-set-initial-state 'elfeed-dashboard-mode 'emacs)
+(setq browse-url-browser-function 'browse-url-generic
+    browse-url-generic-program "qutebrowser")
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org26b6100" class="outline-3">
-<h3 id="org26b6100"><span class="section-number-3">3.18</span> LSP</h3>
+<div id="outline-container-org27d0845" class="outline-3">
+<h3 id="org27d0845"><span class="section-number-3">3.18</span> EMMS</h3>
 <div class="outline-text-3" id="text-3-18">
+<p>
+Why not listen to music in Emacs?
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(use-package emms)
+(emms-all)
+(emms-default-players)
+(setq emms-source-file-default-directory "/Volumes/PiNAS/Media/Music/")
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgac0e219" class="outline-3">
+<h3 id="orgac0e219"><span class="section-number-3">3.19</span> LSP</h3>
+<div class="outline-text-3" id="text-3-19">
 <p>
 I use Emacs for coding as well, so we're going to configure lsp-mode.
 </p>
@@ -1359,6 +1382,7 @@ I use Emacs for coding as well, so we're going to configure lsp-mode.
          (lua-mode . lsp)
          (sh-mode . lsp)
          (lisp-mode . lsp)
+         (emacs-lisp-mode . lsp)
          (css-mode . lsp)
          (html-mode . lsp)
          (json-mode . lsp)
@@ -1366,7 +1390,19 @@ I use Emacs for coding as well, so we're going to configure lsp-mode.
          (latex-mode . lsp)
          (go-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
+  :commands lsp
+  :config
+  (setq lsp-enable-symbol-highlighting nil)
+  lsp-ui-doc-enable t
+  lsp-lens-enable nil
+  lsp-headerline-breadcrumb-enable nil
+  lsp-ui-sideline-enable nil
+  lsp-ui-sideline-enable t
+  lsp-modeline-code-actions-enable t
+  lsp-diagnostics-provider :flycheck
+  lsp-ui-sideline-enable t
+  lsp-ui-doc-border nil
+  lsp-eldoc-enable-hover t)
 (setq lsp-log-io nil)
 (setq lsp-enable-file-watchers nil)
 
@@ -1379,17 +1415,22 @@ I use Emacs for coding as well, so we're going to configure lsp-mode.
   :hook
   (after-init . global-company-mode)
   :bind (:map company-active-map
-              ("&lt;tab&gt;" . company-select-next-or-abort)))
+              ("&lt;tab&gt;" . company-select-next)))
+
 (setq company-idle-delay 0.1
       company-minimum-prefix-length 1
       company-selection-wrap-around t
       company-require-match 'never
       company-dabbrev-downcase nil
       company-dabbrev-ignore-case t
-      company-dabbrev-other-buffers nil)
+      company-dabbrev-other-buffers nil
+      company-tooltip-limit 5
+      company-tooltip-minimum-width 50)
 
 (use-package company-box
-  :hook (company-mode . company-box-mode))
+  :hook (company-mode . company-box-mode)
+  :config
+  (setq company-box-scrollbar nil))
 
 (use-package go-mode)
 (use-package json-mode)
@@ -1407,9 +1448,26 @@ I use Emacs for coding as well, so we're going to configure lsp-mode.
 </div>
 </div>
 
-<div id="outline-container-org8e4d817" class="outline-3">
-<h3 id="org8e4d817"><span class="section-number-3">3.19</span> Projectile</h3>
-<div class="outline-text-3" id="text-3-19">
+<div id="outline-container-org80fcad3" class="outline-3">
+<h3 id="org80fcad3"><span class="section-number-3">3.20</span> Flycheck</h3>
+<div class="outline-text-3" id="text-3-20">
+<p>
+Syntax checking for code.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org263580e" class="outline-3">
+<h3 id="org263580e"><span class="section-number-3">3.21</span> Projectile</h3>
+<div class="outline-text-3" id="text-3-21">
 <p>
 Here, we install and configure projectile, which is a project interaction library.
 </p>
@@ -1421,30 +1479,14 @@ Here, we install and configure projectile, which is a project interaction librar
 </div>
 </div>
 </div>
-
-<div id="outline-container-orga97bc92" class="outline-3">
-<h3 id="orga97bc92"><span class="section-number-3">3.20</span> Perspective</h3>
-<div class="outline-text-3" id="text-3-20">
-<p>
-We install perspective for Emacs 'workspaces'.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(use-package perspective
-  :config
-  (persp-mode))
-</pre>
-</div>
-</div>
-</div>
 </div>
 
-<div id="outline-container-orgec9c159" class="outline-2">
-<h2 id="orgec9c159"><span class="section-number-2">4</span> Org mode</h2>
+<div id="outline-container-org961fa17" class="outline-2">
+<h2 id="org961fa17"><span class="section-number-2">4</span> Org mode</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org262f3a4" class="outline-3">
-<h3 id="org262f3a4"><span class="section-number-3">4.1</span> Files locations</h3>
+<div id="outline-container-org5ea3e5e" class="outline-3">
+<h3 id="org5ea3e5e"><span class="section-number-3">4.1</span> Files locations</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 We want to save everything in <i>one</i> location.
@@ -1459,8 +1501,8 @@ We want to save everything in <i>one</i> location.
 </div>
 </div>
 
-<div id="outline-container-org1a71f72" class="outline-3">
-<h3 id="org1a71f72"><span class="section-number-3">4.2</span> Exporting</h3>
+<div id="outline-container-org8254809" class="outline-3">
+<h3 id="org8254809"><span class="section-number-3">4.2</span> Exporting</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Let's set the export backends to things I commonly use, along with some extra settings for html exports.
@@ -1485,14 +1527,15 @@ Let's set the export backends to things I commonly use, along with some extra se
  'org-babel-load-languages
  '((R . t)
    (latex . t)))
-(setq org-html-head "&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"./style.css\"/&gt;&lt;!DOCTYPE html&gt;&lt;meta name=\"Website and blog about ricing\"&gt;")
+(setq org-html-head "&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"./style.css\"/&gt;"
+  org-html-doctype "html5")
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org408d8b6" class="outline-3">
-<h3 id="org408d8b6"><span class="section-number-3">4.3</span> Bullets</h3>
+<div id="outline-container-org72a9943" class="outline-3">
+<h3 id="org72a9943"><span class="section-number-3">4.3</span> Bullets</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 Package that makes the bullets look nicer
@@ -1508,8 +1551,8 @@ Package that makes the bullets look nicer
 </div>
 </div>
 
-<div id="outline-container-org831f949" class="outline-3">
-<h3 id="org831f949"><span class="section-number-3">4.4</span> UI</h3>
+<div id="outline-container-org1425fb5" class="outline-3">
+<h3 id="org1425fb5"><span class="section-number-3">4.4</span> UI</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 A few additions to make everything look neater
@@ -1520,13 +1563,14 @@ A few additions to make everything look neater
 (setq org-image-actual-width '(300))
 (set-face-attribute 'org-headline-done nil :strike-through t)
 (setq org-agenda-start-on-weekday 0)
+(setq org-src-tab-acts-natively t)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org55f16f4" class="outline-3">
-<h3 id="org55f16f4"><span class="section-number-3">4.5</span> Keywords</h3>
+<div id="outline-container-org1a5e7db" class="outline-3">
+<h3 id="org1a5e7db"><span class="section-number-3">4.5</span> Keywords</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 Let's add our own custom keywords and highlight them
@@ -1548,8 +1592,8 @@ Let's add our own custom keywords and highlight them
 </div>
 </div>
 
-<div id="outline-container-orge95821a" class="outline-3">
-<h3 id="orge95821a"><span class="section-number-3">4.6</span> Org roam</h3>
+<div id="outline-container-org8227001" class="outline-3">
+<h3 id="org8227001"><span class="section-number-3">4.6</span> Org roam</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 Org roam makes Org even better
@@ -1582,8 +1626,8 @@ Org roam makes Org even better
 </div>
 </div>
 
-<div id="outline-container-org875c6f1" class="outline-3">
-<h3 id="org875c6f1"><span class="section-number-3">4.7</span> Org capture</h3>
+<div id="outline-container-orgf5be7e2" class="outline-3">
+<h3 id="orgf5be7e2"><span class="section-number-3">4.7</span> Org capture</h3>
 <div class="outline-text-3" id="text-4-7">
 <p>
 We also add some templates for Org capture
@@ -1600,12 +1644,12 @@ We also add some templates for Org capture
 </div>
 </div>
 
-<div id="outline-container-org315ddbd" class="outline-3">
-<h3 id="org315ddbd"><span class="section-number-3">4.8</span> Babel</h3>
+<div id="outline-container-org16d2958" class="outline-3">
+<h3 id="org16d2958"><span class="section-number-3">4.8</span> Babel</h3>
 <div class="outline-text-3" id="text-4-8">
 </div>
-<div id="outline-container-org07ef236" class="outline-4">
-<h4 id="org07ef236"><span class="section-number-4">4.8.1</span> Go support</h4>
+<div id="outline-container-org61cc8e2" class="outline-4">
+<h4 id="org61cc8e2"><span class="section-number-4">4.8.1</span> Go support</h4>
 <div class="outline-text-4" id="text-4-8-1">
 <p>
 Go support for babel
@@ -1622,8 +1666,8 @@ Go support for babel
 </div>
 </div>
 
-<div id="outline-container-org92e2174" class="outline-3">
-<h3 id="org92e2174"><span class="section-number-3">4.9</span> Faces</h3>
+<div id="outline-container-org44380b1" class="outline-3">
+<h3 id="org44380b1"><span class="section-number-3">4.9</span> Faces</h3>
 <div class="outline-text-3" id="text-4-9">
 <p>
 This changes the faces of Org mode to a nice sans serif font.
@@ -1667,11 +1711,45 @@ This changes the faces of Org mode to a nice sans serif font.
 </div>
 </div>
 </div>
+
+<div id="outline-container-org3c0d1b0" class="outline-3">
+<h3 id="org3c0d1b0"><span class="section-number-3">4.10</span> Present</h3>
+<div class="outline-text-3" id="text-4-10">
+<p>
+Make presentations with org mode.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(use-package org-present)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org495330c" class="outline-2">
+<h2 id="org495330c"><span class="section-number-2">5</span> Functions</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Edit the current file as root.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(defun edit-file-root ()
+  "Use tramp to edit the current buffer as root"
+  (interactive)
+  (when buffer-file-name
+    (find-alternate-file
+     (concat "/sudo:root@localhost:"
+             buffer-file-name))))
+</pre>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matei Cotocel</p>
-<p class="date">Created: 2021-06-16 Wed 16:05</p>
+<p class="date">Created: 2021-07-03 Sat 15:24</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
