@@ -1,5 +1,6 @@
 #+title: Welcome
 #+description: Welcome page of my website
+#+options: toc:nil
 
 * Intro
 
