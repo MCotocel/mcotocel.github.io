@@ -5,7 +5,7 @@
 
 Emacs can do /everything/. That includes managing mail. There are multiple mail programs for Eamcs, but I like to use mu4e.
 
-* mbsync
+** mbsync
 
 You first need to set up mbsync to synchronize your mailbox. Install it with your package manager, then create a file called =.mbsyncrc= in your home directory.
 
@@ -33,7 +33,7 @@ You first need to set up mbsync to synchronize your mailbox. Install it with you
 
 Replace my name with your name. Then, create a file called =.mbpassword= and encrypt it with gpg. mbsync will automatically decrypt that file to read your password. When you're done, run the command =mbsync -a= to sync the mailbox.
 
-* mu
+** mu
 
 Install =mu= from your package manager, then initialize it in the mail directory you set, and with the email address you set.
 
@@ -43,7 +43,7 @@ Install =mu= from your package manager, then initialize it in the mail directory
 
 Then index it with the command =mu index=.
 
-* mu4e
+** mu4e
 
 Mu4e is installed by default, so we just have to configure it.
 

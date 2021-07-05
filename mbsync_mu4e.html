@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-07-03 Sat 15:24 -->
+<!-- 2021-07-05 Mon 09:55 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Set up mu4e with mbsync</title>
@@ -224,26 +224,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org71be1a1">1. Intro</a></li>
-<li><a href="#org5dba621">2. mbsync</a></li>
-<li><a href="#org27f388b">3. mu</a></li>
-<li><a href="#org55af454">4. mu4e</a></li>
+<li><a href="#org3f3680a">Intro</a>
+<ul>
+<li><a href="#org4f801b4">mbsync</a></li>
+<li><a href="#org14e3958">mu</a></li>
+<li><a href="#org9f5e976">mu4e</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org71be1a1" class="outline-2">
-<h2 id="org71be1a1"><span class="section-number-2">1</span> Intro</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-org3f3680a" class="outline-2">
+<h2 id="org3f3680a">Intro</h2>
+<div class="outline-text-2" id="text-org3f3680a">
 <p>
 Emacs can do <i>everything</i>. That includes managing mail. There are multiple mail programs for Eamcs, but I like to use mu4e.
 </p>
 </div>
-</div>
 
-<div id="outline-container-org5dba621" class="outline-2">
-<h2 id="org5dba621"><span class="section-number-2">2</span> mbsync</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org4f801b4" class="outline-3">
+<h3 id="org4f801b4">mbsync</h3>
+<div class="outline-text-3" id="text-org4f801b4">
 <p>
 You first need to set up mbsync to synchronize your mailbox. Install it with your package manager, then create a file called <code>.mbsyncrc</code> in your home directory.
 </p>
@@ -276,9 +278,9 @@ Replace my name with your name. Then, create a file called <code>.mbpassword</co
 </div>
 </div>
 
-<div id="outline-container-org27f388b" class="outline-2">
-<h2 id="org27f388b"><span class="section-number-2">3</span> mu</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org14e3958" class="outline-3">
+<h3 id="org14e3958">mu</h3>
+<div class="outline-text-3" id="text-org14e3958">
 <p>
 Install <code>mu</code> from your package manager, then initialize it in the mail directory you set, and with the email address you set.
 </p>
@@ -294,9 +296,9 @@ Then index it with the command <code>mu index</code>.
 </div>
 </div>
 
-<div id="outline-container-org55af454" class="outline-2">
-<h2 id="org55af454"><span class="section-number-2">4</span> mu4e</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org9f5e976" class="outline-3">
+<h3 id="org9f5e976">mu4e</h3>
+<div class="outline-text-3" id="text-org9f5e976">
 <p>
 Mu4e is installed by default, so we just have to configure it.
 </p>
@@ -339,9 +341,10 @@ Replace the name and email address with your name and email address. Then, launc
 </div>
 </div>
 </div>
+</div>
 <div id="postamble" class="status">
 <p class="author">Author: Matei Cotocel</p>
-<p class="date">Created: 2021-07-03 Sat 15:24</p>
+<p class="date">Created: 2021-07-05 Mon 09:55</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
