@@ -11,6 +11,6 @@ I'm on various places on the internet. I procrastinate a lot. You can find me on
 
 * Posts
 
-  - [[./site_redesign.html][Site redesign]]
-  - [[./mbsync_mu4e.html][Setting up mu4e]]
-  - [[./emacs.html][My emacs config]]
+  - [[./blog/site_redesign.html][Site redesign]]
+  - [[./blog/mbsync_mu4e.html][Setting up mu4e]]
+  - [[./blog/emacs.html][My emacs config]]
