@@ -1,4 +1,3 @@
-#+OPTIONS: toc:nil
-* 404
+#+TITLE: 404
 
 Whatever you're searching for, it's not here. [[./index.html][Go back home?]]
