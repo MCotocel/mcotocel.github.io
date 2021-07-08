@@ -9,7 +9,7 @@ Emacs can do /everything/. That includes managing mail. There are multiple mail 
 
 You first need to set up mbsync to synchronize your mailbox. Install it with your package manager, then create a file called =.mbsyncrc= in your home directory.
 
-#+begin_src 
+#+begin_src sh
   IMAPAccount mcotocel
   Host imap.outlook.com
   User mcotocel@outlook.com
@@ -37,7 +37,7 @@ Replace my name with your name. Then, create a file called =.mbpassword= and enc
 
 Install =mu= from your package manager, then initialize it in the mail directory you set, and with the email address you set.
 
-#+begin_src bash 
+#+begin_src sh
   mu init --maildir=~/Mail --my-address=mcotocel@outlook.com
 #+end_src
 

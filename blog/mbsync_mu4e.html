@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-07-05 Mon 09:55 -->
+<!-- 2021-07-08 Thu 08:41 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Set up mu4e with mbsync</title>
@@ -224,37 +224,37 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3f3680a">Intro</a>
+<li><a href="#orga8fc700">Intro</a>
 <ul>
-<li><a href="#org4f801b4">mbsync</a></li>
-<li><a href="#org14e3958">mu</a></li>
-<li><a href="#org9f5e976">mu4e</a></li>
+<li><a href="#org936418a">mbsync</a></li>
+<li><a href="#org00fc00c">mu</a></li>
+<li><a href="#org354c9d6">mu4e</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3f3680a" class="outline-2">
-<h2 id="org3f3680a">Intro</h2>
-<div class="outline-text-2" id="text-org3f3680a">
+<div id="outline-container-orga8fc700" class="outline-2">
+<h2 id="orga8fc700">Intro</h2>
+<div class="outline-text-2" id="text-orga8fc700">
 <p>
 Emacs can do <i>everything</i>. That includes managing mail. There are multiple mail programs for Eamcs, but I like to use mu4e.
 </p>
 </div>
 
-<div id="outline-container-org4f801b4" class="outline-3">
-<h3 id="org4f801b4">mbsync</h3>
-<div class="outline-text-3" id="text-org4f801b4">
+<div id="outline-container-org936418a" class="outline-3">
+<h3 id="org936418a">mbsync</h3>
+<div class="outline-text-3" id="text-org936418a">
 <p>
 You first need to set up mbsync to synchronize your mailbox. Install it with your package manager, then create a file called <code>.mbsyncrc</code> in your home directory.
 </p>
 
-<pre class="example">
-IMAPAccount mcotocel
+<div class="org-src-container">
+<pre class="src src-sh">IMAPAccount mcotocel
 Host imap.outlook.com
 User mcotocel@outlook.com
-PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.mbpassword.gpg"
+PassCmd <span style="color: #97D59B;">"gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.mbpassword.gpg"</span>
 
 IMAPStore mcotocel-remote
 Account mcotocel
@@ -270,6 +270,7 @@ Patterns *
 Create Both
 SyncState *
 </pre>
+</div>
 
 
 <p>
@@ -278,15 +279,15 @@ Replace my name with your name. Then, create a file called <code>.mbpassword</co
 </div>
 </div>
 
-<div id="outline-container-org14e3958" class="outline-3">
-<h3 id="org14e3958">mu</h3>
-<div class="outline-text-3" id="text-org14e3958">
+<div id="outline-container-org00fc00c" class="outline-3">
+<h3 id="org00fc00c">mu</h3>
+<div class="outline-text-3" id="text-org00fc00c">
 <p>
 Install <code>mu</code> from your package manager, then initialize it in the mail directory you set, and with the email address you set.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash">mu init --maildir=~/Mail --my-address=mcotocel@outlook.com
+<pre class="src src-sh">mu init --maildir=~/Mail --my-address=mcotocel@outlook.com
 </pre>
 </div>
 
@@ -296,42 +297,42 @@ Then index it with the command <code>mu index</code>.
 </div>
 </div>
 
-<div id="outline-container-org9f5e976" class="outline-3">
-<h3 id="org9f5e976">mu4e</h3>
-<div class="outline-text-3" id="text-org9f5e976">
+<div id="outline-container-org354c9d6" class="outline-3">
+<h3 id="org354c9d6">mu4e</h3>
+<div class="outline-text-3" id="text-org354c9d6">
 <p>
 Mu4e is installed by default, so we just have to configure it.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(require 'mu4e)
-(setq mu4e-maildir (expand-file-name "~/Mail/"))
+<pre class="src src-emacs-lisp"><span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">require</span> '<span style="color: #D8A8FF;">mu4e</span><span style="color: #ACE1FF;">)</span>
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-maildir <span style="color: #C780FF;">(</span>expand-file-name <span style="color: #97D59B;">"~/Mail/"</span><span style="color: #C780FF;">)</span><span style="color: #ACE1FF;">)</span>
 
-(setq mu4e-drafts-folder "/Drafts")
-(setq mu4e-sent-folder   "/Sent")
-(setq mu4e-trash-folder  "/Deleted")
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-drafts-folder <span style="color: #97D59B;">"/Drafts"</span><span style="color: #ACE1FF;">)</span>
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-sent-folder   <span style="color: #97D59B;">"/Sent"</span><span style="color: #ACE1FF;">)</span>
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-trash-folder  <span style="color: #97D59B;">"/Deleted"</span><span style="color: #ACE1FF;">)</span>
 
-(setq mu4e-get-mail-command "mbsync -a"
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-get-mail-command <span style="color: #97D59B;">"mbsync -a"</span>
   mu4e-view-prefer-html t
   mu4e-update-interval 180
   mu4e-headers-auto-update t
   mu4e-compose-signature-auto-include nil
-  mu4e-compose-format-flowed t)
+  mu4e-compose-format-flowed t<span style="color: #ACE1FF;">)</span>
 
-(setq
- user-mail-address "mcotocel@outlook.com"
- user-full-name  "Matei Cotocel")
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span>
+ user-mail-address <span style="color: #97D59B;">"mcotocel@outlook.com"</span>
+ user-full-name  <span style="color: #97D59B;">"Matei Cotocel"</span><span style="color: #ACE1FF;">)</span>
 
-(setq mu4e-view-show-images t)
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-view-show-images t<span style="color: #ACE1FF;">)</span>
 
-(require 'org-mu4e)
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">require</span> '<span style="color: #D8A8FF;">org-mu4e</span><span style="color: #ACE1FF;">)</span>
 
-(setq org-mu4e-convert-to-html t)
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> org-mu4e-convert-to-html t<span style="color: #ACE1FF;">)</span>
 
-(setq message-send-mail-function 'smtpmail-send-it)
-(setq smtpmail-smtp-server "smtp-mail.outlook.com")
-(setq smtpmail-smtp-service 587 )
-(setq smtpmail-auth-credentials (expand-file-name "~/.authinfo"))
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> message-send-mail-function 'smtpmail-send-it<span style="color: #ACE1FF;">)</span>
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> smtpmail-smtp-server <span style="color: #97D59B;">"smtp-mail.outlook.com"</span><span style="color: #ACE1FF;">)</span>
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> smtpmail-smtp-service 587 <span style="color: #ACE1FF;">)</span>
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> smtpmail-auth-credentials <span style="color: #C780FF;">(</span>expand-file-name <span style="color: #97D59B;">"~/.authinfo"</span><span style="color: #C780FF;">)</span><span style="color: #ACE1FF;">)</span>
 </pre>
 </div>
 
@@ -344,7 +345,7 @@ Replace the name and email address with your name and email address. Then, launc
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matei Cotocel</p>
-<p class="date">Created: 2021-07-05 Mon 09:55</p>
+<p class="date">Created: 2021-07-08 Thu 08:41</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
