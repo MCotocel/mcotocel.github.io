@@ -11,6 +11,9 @@ Welcome. Here you can read my random posts which barely ever get uploaded. You c
 I'm on various places on the internet. I procrastinate a lot. You can find me on [[https://www.youtube.com/channel/UCUs99naenQw3RQxx1Rv-lNg][Youtube]], [[https://github.com/mcotocel][Github]], and some other places I don't feel like sharing. They're easy enough to find with a Google search. If you want to contact me, feel free to [[mailto:mcotocel@outlook.com][email me]].
 
 * Posts
+  :PROPERTIES:
+  :ID:       3CA81977-7D98-42ED-9358-A8127D7C9DCE
+  :END:
 
   - [[./blog/homebrew_to_nix.html][Moving from Homebrew to Nix]]
   - [[./blog/site_redesign.html][Site redesign]]
