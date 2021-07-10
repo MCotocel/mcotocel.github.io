@@ -12,6 +12,7 @@ I'm on various places on the internet. I procrastinate a lot. You can find me on
 
 * Posts
 
+  - [[./blog/homebrew_to_nix.html][Moving from Homebrew to Nix]]
   - [[./blog/site_redesign.html][Site redesign]]
-  - [[./blog/mbsync_mu4e.html][Setting up mu4e]]
-  - [[./blog/emacs.html][My emacs config]]
+  - [[./blog/mbsync_mu4e.html][Set up mu4e with mbsync]]
+  - [[./blog/emacs.html][Emacs config]]

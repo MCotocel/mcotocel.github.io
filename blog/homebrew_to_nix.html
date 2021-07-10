@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2021-07-10 Sat 16:24 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moving from Homebrew to Nix</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Matei Cotocel">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./style.css"/>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Moving from Homebrew to Nix</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org44c3d56">Intro</a></li>
+<li><a href="#orgd82379e">Getting started</a></li>
+<li><a href="#orga948884">Home manager</a></li>
+<li><a href="#orgc93c65f">Nix-darwin</a></li>
+<li><a href="#org32d4b13">Conclusion</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org44c3d56" class="outline-2">
+<h2 id="org44c3d56">Intro</h2>
+<div class="outline-text-2" id="text-org44c3d56">
+<p>
+Recently, I (mostly) ditched <a href="https://brew.sh/">Homebrew</a> in favor of <a href="https://nixos.org/">Nix</a>. For those who don't know, Nix is a reproducible, declarative package manager, so if a package works on a certain machine, it <i>will</i> work on other machines as well. You can also easily share build environments for projects.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd82379e" class="outline-2">
+<h2 id="orgd82379e">Getting started</h2>
+<div class="outline-text-2" id="text-orgd82379e">
+<p>
+I'd recommend making a list of packages installed by Homebrew by running <code>brew list &gt; brew_installed.txt</code>
+</p>
+
+<p>
+Then, to uninstall Homebrew and all installed packages, run:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">/bin/bash -c <span style="color: #97D59B;">"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"</span>
+</pre>
+</div>
+
+<p>
+Additionally, you may want to remove leftover files with <code>sudo rm -rf /usr/local/*</code>.
+</p>
+
+<p>
+Then, install the Nix package manager with the following command:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sh &lt;<span style="color: #ACE1FF;">(</span>curl -L https://nixos.org/nix/install<span style="color: #ACE1FF;">)</span> --darwin-use-unencrypted-nix-store-volume
+</pre>
+</div>
+
+<p>
+You can now install packages with <code>nix-env -i &lt;package&gt;</code>, and uninstall with <code>nix-env -e &lt;package&gt;</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga948884" class="outline-2">
+<h2 id="orga948884">Home manager</h2>
+<div class="outline-text-2" id="text-orga948884">
+<p>
+Home-manager allows you to manage your home environment with Nix. You can install it and set it up with the following commands:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+<span style="color: #C780FF;">export</span> <span style="color: #ddb2ff;">NIX_PATH</span>=$<span style="color: #ddb2ff;">HOME</span>/.nix-defexpr/channels$<span style="color: #ACE1FF;">{</span><span style="color: #ddb2ff;">NIX_PATH</span>:+:<span style="color: #ACE1FF;">}</span>$<span style="color: #ddb2ff;">NIX_PATH</span>
+nix-shell <span style="color: #97D59B;">'&lt;home-manager&gt;'</span> -A install
+</pre>
+</div>
+
+<p>
+You can create or edit the configuration file in <code>~/.config/nixpkgs/home.nix</code>.
+</p>
+
+<p>
+A simple configuration would be similar to the following:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix"><span style="color: #ACE1FF;">{</span> config, pkgs, lib, ... <span style="color: #ACE1FF;">}</span>:
+
+<span style="color: #ACE1FF;">{</span>
+  <span style="color: #ddb2ff;">programs.home-manager.enable</span> = <span style="color: #C780FF;">true</span>; <span style="color: #384149;"># Enables home-manager</span>
+
+  <span style="color: #ddb2ff;">programs.git</span> = <span style="color: #C780FF;">{</span>                      <span style="color: #384149;"># Configuration for git</span>
+    <span style="color: #ddb2ff;">enable</span> = <span style="color: #C780FF;">true</span>;                      <span style="color: #384149;"># Enable</span>
+    <span style="color: #ddb2ff;">userName</span> = <span style="color: #97D59B;">"Matei Cotocel"</span>;         <span style="color: #384149;"># Set name</span>
+    <span style="color: #ddb2ff;">userEmail</span> = <span style="color: #97D59B;">"mcotocel@outlook.com"</span>; <span style="color: #384149;"># Set email</span>
+  <span style="color: #C780FF;">}</span>;
+
+  <span style="color: #ddb2ff;">home.username</span> = <span style="color: #97D59B;">"matei"</span>;            <span style="color: #384149;"># Your username</span>
+  <span style="color: #ddb2ff;">home.homeDirectory</span> = <span style="color: #97D59B;">"/home/matei"</span>; <span style="color: #384149;"># Your home directory</span>
+
+  <span style="color: #ddb2ff;">home.file</span> = <span style="color: #C780FF;">{</span>
+    <span style="color: #97D59B;">".Xresources"</span>.<span style="color: #ddb2ff;">source</span> = <span style="color: #D8A8FF;">../../config/xresources</span>; <span style="color: #384149;"># Copy xresources from the directory ../../config/xresources to your home directory</span>
+    <span style="color: #97D59B;">".zshrc"</span>.<span style="color: #ddb2ff;">source</span>      = <span style="color: #D8A8FF;">../../config/zshrc</span>;      <span style="color: #384149;"># Copy zshrc from the directory ../../config/zshrc to your home directory</span>
+  <span style="color: #C780FF;">}</span>;
+
+  <span style="color: #ddb2ff;">home.stateVersion</span> = <span style="color: #97D59B;">"21.11"</span>; <span style="color: #384149;"># Don't change this</span>
+<span style="color: #ACE1FF;">}</span>
+</pre>
+</div>
+
+<p>
+To switch to the configuration, run <code>home-manager switch</code>. If your config file is not in the default location, use the <code>-f</code> flag to specify the location.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc93c65f" class="outline-2">
+<h2 id="orgc93c65f">Nix-darwin</h2>
+<div class="outline-text-2" id="text-orgc93c65f">
+<p>
+NixOS has a <code>configuration.nix</code> file to customize the OS. nix-darwin is a module for Nix that allows you to use something similar to <code>configuration.nix</code> on macOS.
+</p>
+
+<p>
+Install it with these commands:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+./result/bin/darwin-installer
+</pre>
+</div>
+
+
+<p>
+The configuration file is located in <code>~/.nixpkgs/darwin-configuration.nix</code>.
+</p>
+
+<p>
+A simple configuration would look like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix"><span style="color: #ACE1FF;">{</span> config, pkgs, ... <span style="color: #ACE1FF;">}</span>:
+
+<span style="color: #ACE1FF;">{</span>
+
+  <span style="color: #ddb2ff;">nixpkgs.config.allowUnfree</span> = <span style="color: #C780FF;">true</span>; <span style="color: #384149;"># Allow unfree packages. Sorry Stallman</span>
+
+  <span style="color: #ddb2ff;">environment.systemPackages</span> = <span style="color: #C780FF;">[</span> <span style="color: #384149;"># Ensure these packages are installed</span>
+    pkgs.vim
+    pkgs.emacs
+  <span style="color: #C780FF;">]</span>;
+
+  <span style="color: #ddb2ff;">services.nix-daemon.enable</span> = <span style="color: #C780FF;">false</span>; <span style="color: #384149;"># Disable daemon</span>
+
+  <span style="color: #ddb2ff;">programs.zsh.enable</span> = <span style="color: #C780FF;">true</span>; <span style="color: #384149;"># Set shell to zsh</span>
+
+  <span style="color: #ddb2ff;">system.stateVersion</span> = 4; <span style="color: #384149;"># Used for backwards compatibility </span>
+
+  <span style="color: #ddb2ff;">services.yabai</span> = <span style="color: #C780FF;">{</span> <span style="color: #384149;"># Configure yabai</span>
+    <span style="color: #ddb2ff;">enable</span> = <span style="color: #C780FF;">true</span>;                   <span style="color: #384149;"># Enable it</span>
+    <span style="color: #ddb2ff;">package</span> = pkgs.yabai;            <span style="color: #384149;"># Set the packages</span>
+    <span style="color: #ddb2ff;">enableScriptingAddition</span> = <span style="color: #C780FF;">false</span>; <span style="color: #384149;"># Disable scripting addition</span>
+    <span style="color: #ddb2ff;">config</span> = <span style="color: #97D59B;">{</span>
+      <span style="color: #ddb2ff;">window_placement</span> = <span style="color: #97D59B;">"second_child"</span>; <span style="color: #384149;"># Set your configuration here like so</span>
+    <span style="color: #97D59B;">}</span>;
+
+    <span style="color: #384149;"># Extra configuration for yabai</span>
+    <span style="color: #ddb2ff;">extraConfig</span> = <span style="color: #97D59B;">''</span>
+<span style="color: #97D59B;">        yabai -m rule --add app="^System Preferences$" manage=off</span>
+<span style="color: #97D59B;">        yabai -m rule --add app="^Keka$" manage=off</span>
+<span style="color: #97D59B;">        yabai -m rule --add app="^Digital Color Meter$" manage=off</span>
+<span style="color: #97D59B;">        yabai -m rule --add app="^Latest$" manage=off</span>
+<span style="color: #97D59B;">        yabai -m rule --add app="^Stickies$" manage=off</span>
+<span style="color: #97D59B;">        yabai -m rule --add app="^GIMP" manage=off</span>
+<span style="color: #97D59B;">        skhd &amp;</span>
+<span style="color: #97D59B;">      ''</span>;
+    <span style="color: #C780FF;">}</span>;
+<span style="color: #ACE1FF;">}</span>
+</pre>
+</div>
+
+<p>
+Switching to the configuration is done with <code>darwin-rebuild switch</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org32d4b13" class="outline-2">
+<h2 id="org32d4b13">Conclusion</h2>
+<div class="outline-text-2" id="text-org32d4b13">
+<p>
+Overall, I find Nix to be more powerful and extensible than Homebrew is. However, some packages don't work or install on macOS due to various issues, such as a dependency not passing tests. For these cases, I have Homebrew installed to use packages that don't work with Nix.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Matei Cotocel</p>
+<p class="date">Created: 2021-07-10 Sat 16:24</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -9,7 +9,7 @@ body {
   max-width: 960px;
 }
 
-pre {
+pre, code {
   color: #aeaeae;
   background: #1f252a;
   border: 0px solid #1f252a;
@@ -20,6 +20,14 @@ pre {
   padding-bottom: 20px;
   padding-right: 50px;
   padding-left: 50px;
+}
+
+code {
+  border: 1px solid #1f252a;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
 }
 
 blockquote {
