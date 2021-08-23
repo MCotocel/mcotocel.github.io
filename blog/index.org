@@ -1,6 +1,0 @@
-#+title: Blog
-#+options: toc:nil
-
-I sometimes post things here. Sometimes.
-
-#+INCLUDE: ../index.org::*Posts

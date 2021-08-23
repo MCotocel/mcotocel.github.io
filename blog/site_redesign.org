@@ -1,4 +1,0 @@
-#+title: Site redesign
-#+description: Some changes I've made
-
-I've redesigned the site, once again. I've switched to a dark colorscheme, monospace fonts, and more padding, but that's it.

@@ -1,5 +1,0 @@
-#+TITLE: 404
-
-#+BEGIN_CENTER
-Whatever you're searching for, it's not here. [[./index.html][Go back home?]]
-#+END_CENTER
