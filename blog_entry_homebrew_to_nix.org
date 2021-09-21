@@ -2,11 +2,11 @@
 
 * Intro
 
-Recently, I (mostly) ditched [[https://brew.sh/][Homebrew]] in favor of [[https://nixos.org/][Nix]]. For those who don't know, Nix is a reproducible, declarative package manager, so if a package works on a certain machine, it /will/ work on other machines as well. You can also easily share build environments for projects.
+Recently, I (mostly) ditched [[https://brew.sh/][Homebrew]] in favor of [[https://nixos.org/][Nix]] (Even more recently, I ditched Nix in favor of Homebrew, but that's irrelevant). For those who don't know, Nix is a reproducible, declarative package manager, so if a package works on one machine, it /will/ work on other machines as well (If I'm wrong, please don't shoot me a meter-long email about how I don't know anything. Just shut up or tell me nicely). You can also easily share build environments for projects.
 
 * Getting started
 
-I'd recommend making a list of packages installed by Homebrew by running ~brew list > brew_installed.txt~
+I'd recommend making a list of packages installed by Homebrew by running ~brew list > brew_installed.txt~. If you don't do this, you're in for a world of pain as you try to remember which packages you had installed.
 
 Then, to uninstall Homebrew and all installed packages, run:
 
@@ -14,7 +14,7 @@ Then, to uninstall Homebrew and all installed packages, run:
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"
 #+end_src
 
-Additionally, you may want to remove leftover files with ~sudo rm -rf /usr/local/*~.
+Additionally, you may want to remove leftover files with =sudo rm -rf /usr/local/*=. Of course, check =/usr/local/= first. You wouldn't want to delete any important files because some random person on the net said so.
 
 Then, install the Nix package manager with the following command:
 
@@ -75,7 +75,6 @@ Install it with these commands:
   nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
   ./result/bin/darwin-installer
 #+end_src
-
 
 The configuration file is located in ~~/.nixpkgs/darwin-configuration.nix~.
 

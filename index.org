@@ -25,7 +25,7 @@ I'm on various places on the internet. I procrastinate a lot. You can find me on
 
 * Not blog
 
-- [[./startpage.html][Startpage]]
+- [[./startpage][Startpage]]
 
 * Note: RSS feeds
 

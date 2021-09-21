@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-09-21 Tue 16:49 -->
+<!-- 2021-09-21 Tue 17:03 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Set up mu4e with mbsync</title>
@@ -239,7 +239,7 @@
 <h2 id="orged10f33">Intro</h2>
 <div class="outline-text-2" id="text-orged10f33">
 <p>
-Emacs can do <i>everything</i>. That includes managing mail. There are multiple mail programs for Eamcs, but I like to use mu4e.
+Emacs can do <i>everything</i>. That includes managing mail. There are multiple mail programs for Eamcs, but I like to use mu4e. This is mostly a guide for me so I can set this up again. If it's useful to someone else, yay. If not, oh well.
 </p>
 </div>
 
@@ -272,9 +272,8 @@ SyncState *
 </pre>
 </div>
 
-
 <p>
-Replace my name with your name. Then, create a file called <code>.mbpassword</code> and encrypt it with gpg. mbsync will automatically decrypt that file to read your password. When you're done, run the command <code>mbsync -a</code> to sync the mailbox.
+Replace my name and email with your name (unless you're me, then don't). Then, create a file called <code>.mbpassword</code> and encrypt it with gpg. mbsync will automatically decrypt that file to read your password. When you're done, run the command <code>mbsync -a</code> to sync the mailbox.
 </p>
 </div>
 </div>
@@ -283,7 +282,7 @@ Replace my name with your name. Then, create a file called <code>.mbpassword</co
 <h3 id="org65bd882">mu</h3>
 <div class="outline-text-3" id="text-org65bd882">
 <p>
-Install <code>mu</code> from your package manager, then initialize it in the mail directory you set, and with the email address you set.
+Install <code>mu</code> with your package manager, then initialize it in the mail directory you set, and with the email address you set.
 </p>
 
 <div class="org-src-container">
@@ -301,7 +300,7 @@ Then index it with the command <code>mu index</code>.
 <h3 id="org53b8317">mu4e</h3>
 <div class="outline-text-3" id="text-org53b8317">
 <p>
-Mu4e is installed by default, so we just have to configure it.
+<code>mu4e</code> is installed by default, when you install <code>mu</code> so we just have to configure it.
 </p>
 
 <div class="org-src-container">
@@ -337,7 +336,7 @@ Mu4e is installed by default, so we just have to configure it.
 </div>
 
 <p>
-Replace the name and email address with your name and email address. Then, launch <code>mu4e</code>, sync the maildir, and you should be able to read, receive and send mail.
+Replace my name and email address with your name and email address (again, unless you're me). Then, launch <code>mu4e</code>, sync the maildir, and you should be able to read, receive and send mail. If not, I'm probably just stupid / your system is bad (I prefer the latter option).
 </p>
 </div>
 </div>
@@ -345,7 +344,7 @@ Replace the name and email address with your name and email address. Then, launc
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matei Cotocel</p>
-<p class="date">Created: 2021-09-21 Tue 16:49</p>
+<p class="date">Created: 2021-09-21 Tue 17:03</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

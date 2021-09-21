@@ -2,9 +2,9 @@
 
 * Intro
 
-Recently, I've been asked to do a guide on my notetaking workflow. So I've written a post about how I use Emacs with Org Roam and Org Roam UI to manage my notes, and, ultimately, my life.
+Recently, I've been asked to do a guide on my notetaking workflow. So I've written a post about how I use Emacs with Org Roam and Org Roam UI to manage my notes, and, ultimately, my life (No, I'm not exaggerating).
 
-Note: Backslashes are added to prevent automatic formatting. Yes, Org Mode can export to html.
+Note: Backslashes are added to prevent automatic formatting. Yes, Org Mode can export to HTML. Yes, this website is written in Org. No, this isn't hard.
 
 * Getting started
 
@@ -31,11 +31,11 @@ First off, you should install the necessary packages. I use =use-package= to man
         org-roam-ui-open-on-start t))
 #+end_src
 
-This chunk of code installs Org Roam and sets the notes directory to =~/Org/=, though you can set it to whatever you want. It then installs Org Roam UI, which has a nice graph to visualize connections between notes. This is all you need to set up the basics.
+This chunk of code installs Org Roam and sets the notes directory to =~/Org/=, though you can set it to whatever you want. It then installs Org Roam UI, which has a nice graph to visualize connections between notes.
 
 * Usage
 
-To create a new file, run =M-x org-roam-node-find=, and enter the name you want. This command can also open existing Org Roam notes, though you probably don't have any right now. Once you open the new file, you can start taking notes! Org mode syntax is easy to understand, especially if you have used markdown before.
+To create a new file, run =M-x org-roam-node-find=, and enter the name you want. This command can also open existing Org Roam notes, though you probably don't have any right now. Once you open the new file, you can start taking notes! Org mode syntax is easy to understand, especially if you have used markdown before. If you haven't, what are you doing with your life?
 
 #+begin_src org-mode
 \* This is a heading
@@ -78,4 +78,3 @@ This is my first [\[org]] file...
 An empty file with the title Org will be created. If the file exists, the link will simply link to the existing file.
 
 After adding a link, you can open Org Roam UI with =M-x orui-open=, which will open the locally hosted graph in a browser. Now have fun growing your graph so it can look prettier, and sinking hours into it for the sake of it looking like a galaxy.
-

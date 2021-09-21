@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-09-21 Tue 16:49 -->
+<!-- 2021-09-21 Tue 17:03 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Moving from Homebrew to Nix</title>
@@ -235,7 +235,7 @@
 <h2 id="orgc00ba77">Intro</h2>
 <div class="outline-text-2" id="text-orgc00ba77">
 <p>
-Recently, I (mostly) ditched <a href="https://brew.sh/">Homebrew</a> in favor of <a href="https://nixos.org/">Nix</a>. For those who don't know, Nix is a reproducible, declarative package manager, so if a package works on a certain machine, it <i>will</i> work on other machines as well. You can also easily share build environments for projects.
+Recently, I (mostly) ditched <a href="https://brew.sh/">Homebrew</a> in favor of <a href="https://nixos.org/">Nix</a> (Even more recently, I ditched Nix in favor of Homebrew, but that's irrelevant). For those who don't know, Nix is a reproducible, declarative package manager, so if a package works on one machine, it <i>will</i> work on other machines as well (If I'm wrong, please don't shoot me a meter-long email about how I don't know anything. Just shut up or tell me nicely). You can also easily share build environments for projects.
 </p>
 </div>
 </div>
@@ -244,7 +244,7 @@ Recently, I (mostly) ditched <a href="https://brew.sh/">Homebrew</a> in favor of
 <h2 id="org6f2956b">Getting started</h2>
 <div class="outline-text-2" id="text-org6f2956b">
 <p>
-I'd recommend making a list of packages installed by Homebrew by running <code>brew list &gt; brew_installed.txt</code>
+I'd recommend making a list of packages installed by Homebrew by running <code>brew list &gt; brew_installed.txt</code>. If you don't do this, you're in for a world of pain as you try to remember which packages you had installed.
 </p>
 
 <p>
@@ -257,7 +257,7 @@ Then, to uninstall Homebrew and all installed packages, run:
 </div>
 
 <p>
-Additionally, you may want to remove leftover files with <code>sudo rm -rf /usr/local/*</code>.
+Additionally, you may want to remove leftover files with <code>sudo rm -rf /usr/local/*</code>. Of course, check <code>/usr/local/</code> first. You wouldn't want to delete any important files because some random person on the net said so.
 </p>
 
 <p>
@@ -346,7 +346,6 @@ Install it with these commands:
 </pre>
 </div>
 
-
 <p>
 The configuration file is located in <code>~/.nixpkgs/darwin-configuration.nix</code>.
 </p>
@@ -413,7 +412,7 @@ Overall, I find Nix to be more powerful and extensible than Homebrew is. However
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matei Cotocel</p>
-<p class="date">Created: 2021-09-21 Tue 16:49</p>
+<p class="date">Created: 2021-09-21 Tue 17:03</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
