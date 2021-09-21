@@ -23,6 +23,10 @@ I'm on various places on the internet. I procrastinate a lot. You can find me on
 - [[file:./blog_entry_homebrew_to_nix.org][Blog entry: Homebrew to Nix]]
 - [[file:./blog_entry_set_up_mu4e_with_mbsync.org][Blog entry: Set up mu4e with mbsync]]
 
+* Not blog
+
+- [[./startpage.html][Startpage]]
+
 * Note: RSS feeds
 
 I'm going to add RSS feeds to my site soon. Sorry to all of you that only read blogs that have RSS feeds. I also use RSS a lot and understand your pain.
