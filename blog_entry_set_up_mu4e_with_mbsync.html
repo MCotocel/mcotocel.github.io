@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-09-14 Tue 09:41 -->
+<!-- 2021-09-21 Tue 16:49 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Blog entry: Homebrew to Nix</title>
+<title>Set up mu4e with mbsync</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="Matei Cotocel">
+<meta name="description" content="A guide on how to set up mu4e and mbsync"
+>
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -217,203 +219,133 @@
 </head>
 <body>
 <div id="content">
-<h1 class="title">Blog entry: Homebrew to Nix</h1>
+<h1 class="title">Set up mu4e with mbsync</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2952214">Intro</a></li>
-<li><a href="#orgf991d89">Getting started</a></li>
-<li><a href="#org597a1b2">Home manager</a></li>
-<li><a href="#org1d2b96f">Nix-darwin</a></li>
-<li><a href="#org4357a97">Conclusion</a></li>
+<li><a href="#orged10f33">Intro</a>
+<ul>
+<li><a href="#orgc674150">mbsync</a></li>
+<li><a href="#org65bd882">mu</a></li>
+<li><a href="#org53b8317">mu4e</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2952214" class="outline-2">
-<h2 id="org2952214">Intro</h2>
-<div class="outline-text-2" id="text-org2952214">
+<div id="outline-container-orged10f33" class="outline-2">
+<h2 id="orged10f33">Intro</h2>
+<div class="outline-text-2" id="text-orged10f33">
 <p>
-Recently, I (mostly) ditched <a href="https://brew.sh/">Homebrew</a> in favor of <a href="https://nixos.org/">Nix</a>. For those who don't know, Nix is a reproducible, declarative package manager, so if a package works on a certain machine, it <i>will</i> work on other machines as well. You can also easily share build environments for projects.
+Emacs can do <i>everything</i>. That includes managing mail. There are multiple mail programs for Eamcs, but I like to use mu4e.
 </p>
 </div>
-</div>
 
-<div id="outline-container-orgf991d89" class="outline-2">
-<h2 id="orgf991d89">Getting started</h2>
-<div class="outline-text-2" id="text-orgf991d89">
+<div id="outline-container-orgc674150" class="outline-3">
+<h3 id="orgc674150">mbsync</h3>
+<div class="outline-text-3" id="text-orgc674150">
 <p>
-I'd recommend making a list of packages installed by Homebrew by running <code>brew list &gt; brew_installed.txt</code>
-</p>
-
-<p>
-Then, to uninstall Homebrew and all installed packages, run:
+You first need to set up mbsync to synchronize your mailbox. Install it with your package manager, then create a file called <code>.mbsyncrc</code> in your home directory.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">/bin/bash -c <span style="color: #97D59B;">"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"</span>
-</pre>
-</div>
+<pre class="src src-sh">IMAPAccount mcotocel
+Host imap.outlook.com
+User mcotocel@outlook.com
+PassCmd <span style="color: #97D59B;">"gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.mbpassword.gpg"</span>
 
-<p>
-Additionally, you may want to remove leftover files with <code>sudo rm -rf /usr/local/*</code>.
-</p>
+IMAPStore mcotocel-remote
+Account mcotocel
 
-<p>
-Then, install the Nix package manager with the following command:
-</p>
+MaildirStore mcotocel-local
+Path ~/Mail/mcotocel/
+Inbox ~/Mail/mcotocel/Inbox
 
-<div class="org-src-container">
-<pre class="src src-sh">sh &lt;<span style="color: #ACE1FF;">(</span>curl -L https://nixos.org/nix/install<span style="color: #ACE1FF;">)</span> --darwin-use-unencrypted-nix-store-volume
-</pre>
-</div>
-
-<p>
-You can now install packages with <code>nix-env -i &lt;package&gt;</code>, and uninstall with <code>nix-env -e &lt;package&gt;</code>.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org597a1b2" class="outline-2">
-<h2 id="org597a1b2">Home manager</h2>
-<div class="outline-text-2" id="text-org597a1b2">
-<p>
-Home-manager allows you to manage your home environment with Nix. You can install it and set it up with the following commands:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-nix-channel --update
-<span style="color: #C780FF;">export</span> <span style="color: #ddb2ff;">NIX_PATH</span>=$<span style="color: #ddb2ff;">HOME</span>/.nix-defexpr/channels$<span style="color: #ACE1FF;">{</span><span style="color: #ddb2ff;">NIX_PATH</span>:+:<span style="color: #ACE1FF;">}</span>$<span style="color: #ddb2ff;">NIX_PATH</span>
-nix-shell <span style="color: #97D59B;">'&lt;home-manager&gt;'</span> -A install
-</pre>
-</div>
-
-<p>
-You can create or edit the configuration file in <code>~/.config/nixpkgs/home.nix</code>.
-</p>
-
-<p>
-A simple configuration would be similar to the following:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-nix">{ config, pkgs, lib, ... }:
-
-{
-  programs.home-manager.enable = true; # Enables home-manager
-
-  programs.git = {                      # Configuration for git
-    enable = true;                      # Enable
-    userName = "Matei Cotocel";         # Set name
-    userEmail = "mcotocel@outlook.com"; # Set email
-  };
-
-  home.username = "matei";            # Your username
-  home.homeDirectory = "/home/matei"; # Your home directory
-
-  home.file = {
-    ".Xresources".source = ../../config/xresources; # Copy xresources from the directory ../../config/xresources to your home directory
-    ".zshrc".source      = ../../config/zshrc;      # Copy zshrc from the directory ../../config/zshrc to your home directory
-  };
-
-  home.stateVersion = "21.11"; # Don't change this
-}
-</pre>
-</div>
-
-<p>
-To switch to the configuration, run <code>home-manager switch</code>. If your config file is not in the default location, use the <code>-f</code> flag to specify the location.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org1d2b96f" class="outline-2">
-<h2 id="org1d2b96f">Nix-darwin</h2>
-<div class="outline-text-2" id="text-org1d2b96f">
-<p>
-NixOS has a <code>configuration.nix</code> file to customize the OS. nix-darwin is a module for Nix that allows you to use something similar to <code>configuration.nix</code> on macOS.
-</p>
-
-<p>
-Install it with these commands:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
-./result/bin/darwin-installer
+Channel mcotocel
+Master :mcotocel-remote:
+Slave :mcotocel-local:
+Patterns *
+Create Both
+SyncState *
 </pre>
 </div>
 
 
 <p>
-The configuration file is located in <code>~/.nixpkgs/darwin-configuration.nix</code>.
+Replace my name with your name. Then, create a file called <code>.mbpassword</code> and encrypt it with gpg. mbsync will automatically decrypt that file to read your password. When you're done, run the command <code>mbsync -a</code> to sync the mailbox.
 </p>
+</div>
+</div>
 
+<div id="outline-container-org65bd882" class="outline-3">
+<h3 id="org65bd882">mu</h3>
+<div class="outline-text-3" id="text-org65bd882">
 <p>
-A simple configuration would look like this:
+Install <code>mu</code> from your package manager, then initialize it in the mail directory you set, and with the email address you set.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-nix">{ config, pkgs, ... }:
-
-{
-
-  nixpkgs.config.allowUnfree = true; # Allow unfree packages. Sorry Stallman
-
-  environment.systemPackages = [ # Ensure these packages are installed
-    pkgs.vim
-    pkgs.emacs
-  ];
-
-  services.nix-daemon.enable = false; # Disable daemon
-
-  programs.zsh.enable = true; # Set shell to zsh
-
-  system.stateVersion = 4; # Used for backwards compatibility 
-
-  services.yabai = { # Configure yabai
-    enable = true;                   # Enable it
-    package = pkgs.yabai;            # Set the packages
-    enableScriptingAddition = false; # Disable scripting addition
-    config = {
-      window_placement = "second_child"; # Set your configuration here like so
-    };
-
-    # Extra configuration for yabai
-    extraConfig = ''
-        yabai -m rule --add app="^System Preferences$" manage=off
-        yabai -m rule --add app="^Keka$" manage=off
-        yabai -m rule --add app="^Digital Color Meter$" manage=off
-        yabai -m rule --add app="^Latest$" manage=off
-        yabai -m rule --add app="^Stickies$" manage=off
-        yabai -m rule --add app="^GIMP" manage=off
-        skhd &amp;
-      '';
-    };
-}
+<pre class="src src-sh">mu init --maildir=~/Mail --my-address=mcotocel@outlook.com
 </pre>
 </div>
 
 <p>
-Switching to the configuration is done with <code>darwin-rebuild switch</code>.
+Then index it with the command <code>mu index</code>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4357a97" class="outline-2">
-<h2 id="org4357a97">Conclusion</h2>
-<div class="outline-text-2" id="text-org4357a97">
+<div id="outline-container-org53b8317" class="outline-3">
+<h3 id="org53b8317">mu4e</h3>
+<div class="outline-text-3" id="text-org53b8317">
 <p>
-Overall, I find Nix to be more powerful and extensible than Homebrew is. However, some packages don't work or install on macOS due to various issues, such as a dependency not passing tests. For these cases, I have Homebrew installed to use packages that don't work with Nix.
+Mu4e is installed by default, so we just have to configure it.
 </p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">require</span> '<span style="color: #D8A8FF;">mu4e</span><span style="color: #ACE1FF;">)</span>
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-maildir <span style="color: #C780FF;">(</span>expand-file-name <span style="color: #97D59B;">"~/Mail/"</span><span style="color: #C780FF;">)</span><span style="color: #ACE1FF;">)</span>
+
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-drafts-folder <span style="color: #97D59B;">"/Drafts"</span><span style="color: #ACE1FF;">)</span>
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-sent-folder   <span style="color: #97D59B;">"/Sent"</span><span style="color: #ACE1FF;">)</span>
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-trash-folder  <span style="color: #97D59B;">"/Deleted"</span><span style="color: #ACE1FF;">)</span>
+
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-get-mail-command <span style="color: #97D59B;">"mbsync -a"</span>
+  mu4e-view-prefer-html t
+  mu4e-update-interval 180
+  mu4e-headers-auto-update t
+  mu4e-compose-signature-auto-include nil
+  mu4e-compose-format-flowed t<span style="color: #ACE1FF;">)</span>
+
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span>
+ user-mail-address <span style="color: #97D59B;">"mcotocel@outlook.com"</span>
+ user-full-name  <span style="color: #97D59B;">"Matei Cotocel"</span><span style="color: #ACE1FF;">)</span>
+
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-view-show-images t<span style="color: #ACE1FF;">)</span>
+
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">require</span> '<span style="color: #D8A8FF;">org-mu4e</span><span style="color: #ACE1FF;">)</span>
+
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> org-mu4e-convert-to-html t<span style="color: #ACE1FF;">)</span>
+
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> message-send-mail-function 'smtpmail-send-it<span style="color: #ACE1FF;">)</span>
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> smtpmail-smtp-server <span style="color: #97D59B;">"smtp-mail.outlook.com"</span><span style="color: #ACE1FF;">)</span>
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> smtpmail-smtp-service 587 <span style="color: #ACE1FF;">)</span>
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> smtpmail-auth-credentials <span style="color: #C780FF;">(</span>expand-file-name <span style="color: #97D59B;">"~/.authinfo"</span><span style="color: #C780FF;">)</span><span style="color: #ACE1FF;">)</span>
+</pre>
+</div>
+
+<p>
+Replace the name and email address with your name and email address. Then, launch <code>mu4e</code>, sync the maildir, and you should be able to read, receive and send mail.
+</p>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matei Cotocel</p>
-<p class="date">Created: 2021-09-14 Tue 09:41</p>
+<p class="date">Created: 2021-09-21 Tue 16:49</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

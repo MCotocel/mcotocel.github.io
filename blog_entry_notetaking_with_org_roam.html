@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-09-14 Tue 09:42 -->
+<!-- 2021-09-21 Tue 16:49 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Blog entry: Set up mu4e with mbsync</title>
+<title>Notetaking with Org Roam</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="Matei Cotocel">
 <style type="text/css">
@@ -217,133 +217,131 @@
 </head>
 <body>
 <div id="content">
-<h1 class="title">Blog entry: Set up mu4e with mbsync</h1>
+<h1 class="title">Notetaking with Org Roam</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd4dd7a5">Intro</a>
-<ul>
-<li><a href="#org808f321">mbsync</a></li>
-<li><a href="#org1e854fc">mu</a></li>
-<li><a href="#org608bec9">mu4e</a></li>
-</ul>
-</li>
+<li><a href="#orge38e21e">Intro</a></li>
+<li><a href="#org9833310">Getting started</a></li>
+<li><a href="#orgf319d13">Usage</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd4dd7a5" class="outline-2">
-<h2 id="orgd4dd7a5">Intro</h2>
-<div class="outline-text-2" id="text-orgd4dd7a5">
+<div id="outline-container-orge38e21e" class="outline-2">
+<h2 id="orge38e21e">Intro</h2>
+<div class="outline-text-2" id="text-orge38e21e">
 <p>
-Emacs can do <i>everything</i>. That includes managing mail. There are multiple mail programs for Eamcs, but I like to use mu4e.
-</p>
-</div>
-
-<div id="outline-container-org808f321" class="outline-3">
-<h3 id="org808f321">mbsync</h3>
-<div class="outline-text-3" id="text-org808f321">
-<p>
-You first need to set up mbsync to synchronize your mailbox. Install it with your package manager, then create a file called <code>.mbsyncrc</code> in your home directory.
+Recently, I've been asked to do a guide on my notetaking workflow. So I've written a post about how I use Emacs with Org Roam and Org Roam UI to manage my notes, and, ultimately, my life.
 </p>
 
-<div class="org-src-container">
-<pre class="src src-sh">IMAPAccount mcotocel
-Host imap.outlook.com
-User mcotocel@outlook.com
-PassCmd <span style="color: #97D59B;">"gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.mbpassword.gpg"</span>
-
-IMAPStore mcotocel-remote
-Account mcotocel
-
-MaildirStore mcotocel-local
-Path ~/Mail/mcotocel/
-Inbox ~/Mail/mcotocel/Inbox
-
-Channel mcotocel
-Master :mcotocel-remote:
-Slave :mcotocel-local:
-Patterns *
-Create Both
-SyncState *
-</pre>
-</div>
-
-
 <p>
-Replace my name with your name. Then, create a file called <code>.mbpassword</code> and encrypt it with gpg. mbsync will automatically decrypt that file to read your password. When you're done, run the command <code>mbsync -a</code> to sync the mailbox.
+Note: Backslashes are added to prevent automatic formatting. Yes, Org Mode can export to html.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1e854fc" class="outline-3">
-<h3 id="org1e854fc">mu</h3>
-<div class="outline-text-3" id="text-org1e854fc">
+<div id="outline-container-org9833310" class="outline-2">
+<h2 id="org9833310">Getting started</h2>
+<div class="outline-text-2" id="text-org9833310">
 <p>
-Install <code>mu</code> from your package manager, then initialize it in the mail directory you set, and with the email address you set.
+First off, you should install the necessary packages. I use <code>use-package</code> to manage mine, but you can just use <code>M-x package-install</code> if you want to.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">mu init --maildir=~/Mail --my-address=mcotocel@outlook.com
+<pre class="src src-emacs-lisp"><span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">use-package</span> <span style="color: #D8A8FF;">org-roam</span>
+  <span style="color: #C780FF;">:custom</span>
+  <span style="color: #C780FF;">(</span>org-roam-directory <span style="color: #97D59B;">"~/Org/"</span><span style="color: #C780FF;">)</span>
+  <span style="color: #C780FF;">:config</span>
+  <span style="color: #C780FF;">(</span>org-roam-setup<span style="color: #C780FF;">)</span><span style="color: #ACE1FF;">)</span>
+
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> org-roam-v2-ack t<span style="color: #ACE1FF;">)</span>
+
+<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">use-package</span> <span style="color: #D8A8FF;">org-roam-ui</span>
+  <span style="color: #C780FF;">:straight</span>
+  <span style="color: #C780FF;">(</span><span style="color: #C780FF;">:host</span> github <span style="color: #C780FF;">:repo</span> <span style="color: #97D59B;">"org-roam/org-roam-ui"</span> <span style="color: #C780FF;">:branch</span> <span style="color: #97D59B;">"main"</span> <span style="color: #C780FF;">:files</span> <span style="color: #97D59B;">(</span><span style="color: #97D59B;">"*.el"</span> <span style="color: #97D59B;">"out"</span><span style="color: #97D59B;">)</span><span style="color: #C780FF;">)</span>
+  <span style="color: #C780FF;">:after</span> org-roam
+  <span style="color: #C780FF;">:hook</span> <span style="color: #C780FF;">(</span>after-init . org-roam-ui-mode<span style="color: #C780FF;">)</span>
+  <span style="color: #C780FF;">:config</span>
+  <span style="color: #C780FF;">(</span><span style="color: #ACE1FF;">setq</span> org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t<span style="color: #C780FF;">)</span><span style="color: #ACE1FF;">)</span>
 </pre>
 </div>
 
 <p>
-Then index it with the command <code>mu index</code>.
+This chunk of code installs Org Roam and sets the notes directory to <code>~/Org/</code>, though you can set it to whatever you want. It then installs Org Roam UI, which has a nice graph to visualize connections between notes. This is all you need to set up the basics.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org608bec9" class="outline-3">
-<h3 id="org608bec9">mu4e</h3>
-<div class="outline-text-3" id="text-org608bec9">
+<div id="outline-container-orgf319d13" class="outline-2">
+<h2 id="orgf319d13">Usage</h2>
+<div class="outline-text-2" id="text-orgf319d13">
 <p>
-Mu4e is installed by default, so we just have to configure it.
+To create a new file, run <code>M-x org-roam-node-find</code>, and enter the name you want. This command can also open existing Org Roam notes, though you probably don't have any right now. Once you open the new file, you can start taking notes! Org mode syntax is easy to understand, especially if you have used markdown before.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">require</span> '<span style="color: #D8A8FF;">mu4e</span><span style="color: #ACE1FF;">)</span>
-<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-maildir <span style="color: #C780FF;">(</span>expand-file-name <span style="color: #97D59B;">"~/Mail/"</span><span style="color: #C780FF;">)</span><span style="color: #ACE1FF;">)</span>
+<pre class="src src-org-mode">\* This is a heading
+\** This is another smaller heading
+\*** This is an even smaller heading
 
-<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-drafts-folder <span style="color: #97D59B;">"/Drafts"</span><span style="color: #ACE1FF;">)</span>
-<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-sent-folder   <span style="color: #97D59B;">"/Sent"</span><span style="color: #ACE1FF;">)</span>
-<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-trash-folder  <span style="color: #97D59B;">"/Deleted"</span><span style="color: #ACE1FF;">)</span>
+- Bullet points
+  - A
+    - 1
+    - 2
+    - 3
+  - B
+  - c
 
-<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-get-mail-command <span style="color: #97D59B;">"mbsync -a"</span>
-  mu4e-view-prefer-html t
-  mu4e-update-interval 180
-  mu4e-headers-auto-update t
-  mu4e-compose-signature-auto-include nil
-  mu4e-compose-format-flowed t<span style="color: #ACE1FF;">)</span>
+[\[https://example.com][A link]]
 
-<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span>
- user-mail-address <span style="color: #97D59B;">"mcotocel@outlook.com"</span>
- user-full-name  <span style="color: #97D59B;">"Matei Cotocel"</span><span style="color: #ACE1FF;">)</span>
-
-<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> mu4e-view-show-images t<span style="color: #ACE1FF;">)</span>
-
-<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">require</span> '<span style="color: #D8A8FF;">org-mu4e</span><span style="color: #ACE1FF;">)</span>
-
-<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> org-mu4e-convert-to-html t<span style="color: #ACE1FF;">)</span>
-
-<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> message-send-mail-function 'smtpmail-send-it<span style="color: #ACE1FF;">)</span>
-<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> smtpmail-smtp-server <span style="color: #97D59B;">"smtp-mail.outlook.com"</span><span style="color: #ACE1FF;">)</span>
-<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> smtpmail-smtp-service 587 <span style="color: #ACE1FF;">)</span>
-<span style="color: #ACE1FF;">(</span><span style="color: #ACE1FF;">setq</span> smtpmail-auth-credentials <span style="color: #C780FF;">(</span>expand-file-name <span style="color: #97D59B;">"~/.authinfo"</span><span style="color: #C780FF;">)</span><span style="color: #ACE1FF;">)</span>
+[\[A backlink]]
 </pre>
 </div>
 
 <p>
-Replace the name and email address with your name and email address. Then, launch <code>mu4e</code>, sync the maildir, and you should be able to read, receive and send mail.
+So an example file could be like the below:
 </p>
+
+<div class="org-src-container">
+<pre class="src src-org-mode">:PROPERTIES:
+:ID: A-RANDOM-ID-GENERATED-BY-ROAM
+:END:
+\#+title: Notetaking with Org Roam
+
+\* Notetaking with Org Mode
+  This is my first org file, where I'll test out org mode features!
+</pre>
 </div>
+
+<p>
+Then, to link it to a file called org, you would add a backlink:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org-mode">[...]
+This is my first [\[org]] file...
+[...]
+</pre>
+</div>
+
+<p>
+An empty file with the title Org will be created. If the file exists, the link will simply link to the existing file.
+</p>
+
+<p>
+After adding a link, you can open Org Roam UI with <code>M-x orui-open</code>, which will open the locally hosted graph in a browser. Now have fun growing your graph so it can look prettier, and sinking hours into it for the sake of it looking like a galaxy.
+</p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matei Cotocel</p>
-<p class="date">Created: 2021-09-14 Tue 09:42</p>
+<p class="date">Created: 2021-09-21 Tue 16:49</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

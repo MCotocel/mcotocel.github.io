@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-09-14 Tue 09:42 -->
+<!-- 2021-09-21 Tue 16:49 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Blog entry: Site redesign</title>
+<title>Moving from Homebrew to Nix</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="Matei Cotocel">
 <style type="text/css">
@@ -217,14 +217,203 @@
 </head>
 <body>
 <div id="content">
-<h1 class="title">Blog entry: Site redesign</h1>
+<h1 class="title">Moving from Homebrew to Nix</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgc00ba77">Intro</a></li>
+<li><a href="#org6f2956b">Getting started</a></li>
+<li><a href="#orgaf1b794">Home manager</a></li>
+<li><a href="#org53e67f0">Nix-darwin</a></li>
+<li><a href="#orgc7f3173">Conclusion</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc00ba77" class="outline-2">
+<h2 id="orgc00ba77">Intro</h2>
+<div class="outline-text-2" id="text-orgc00ba77">
 <p>
-I've redesigned the site, once again. I've switched to a dark colorscheme, monospace fonts, and more padding, but that's it.
+Recently, I (mostly) ditched <a href="https://brew.sh/">Homebrew</a> in favor of <a href="https://nixos.org/">Nix</a>. For those who don't know, Nix is a reproducible, declarative package manager, so if a package works on a certain machine, it <i>will</i> work on other machines as well. You can also easily share build environments for projects.
 </p>
+</div>
+</div>
+
+<div id="outline-container-org6f2956b" class="outline-2">
+<h2 id="org6f2956b">Getting started</h2>
+<div class="outline-text-2" id="text-org6f2956b">
+<p>
+I'd recommend making a list of packages installed by Homebrew by running <code>brew list &gt; brew_installed.txt</code>
+</p>
+
+<p>
+Then, to uninstall Homebrew and all installed packages, run:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">/bin/bash -c <span style="color: #97D59B;">"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"</span>
+</pre>
+</div>
+
+<p>
+Additionally, you may want to remove leftover files with <code>sudo rm -rf /usr/local/*</code>.
+</p>
+
+<p>
+Then, install the Nix package manager with the following command:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sh &lt;<span style="color: #ACE1FF;">(</span>curl -L https://nixos.org/nix/install<span style="color: #ACE1FF;">)</span> --darwin-use-unencrypted-nix-store-volume
+</pre>
+</div>
+
+<p>
+You can now install packages with <code>nix-env -i &lt;package&gt;</code>, and uninstall with <code>nix-env -e &lt;package&gt;</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaf1b794" class="outline-2">
+<h2 id="orgaf1b794">Home manager</h2>
+<div class="outline-text-2" id="text-orgaf1b794">
+<p>
+Home-manager allows you to manage your home environment with Nix. You can install it and set it up with the following commands:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+<span style="color: #C780FF;">export</span> <span style="color: #ddb2ff;">NIX_PATH</span>=$<span style="color: #ddb2ff;">HOME</span>/.nix-defexpr/channels$<span style="color: #ACE1FF;">{</span><span style="color: #ddb2ff;">NIX_PATH</span>:+:<span style="color: #ACE1FF;">}</span>$<span style="color: #ddb2ff;">NIX_PATH</span>
+nix-shell <span style="color: #97D59B;">'&lt;home-manager&gt;'</span> -A install
+</pre>
+</div>
+
+<p>
+You can create or edit the configuration file in <code>~/.config/nixpkgs/home.nix</code>.
+</p>
+
+<p>
+A simple configuration would be similar to the following:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix">{ config, pkgs, lib, ... }:
+
+{
+  programs.home-manager.enable = true; # Enables home-manager
+
+  programs.git = {                      # Configuration for git
+    enable = true;                      # Enable
+    userName = "Matei Cotocel";         # Set name
+    userEmail = "mcotocel@outlook.com"; # Set email
+  };
+
+  home.username = "matei";            # Your username
+  home.homeDirectory = "/home/matei"; # Your home directory
+
+  home.file = {
+    ".Xresources".source = ../../config/xresources; # Copy xresources from the directory ../../config/xresources to your home directory
+    ".zshrc".source      = ../../config/zshrc;      # Copy zshrc from the directory ../../config/zshrc to your home directory
+  };
+
+  home.stateVersion = "21.11"; # Don't change this
+}
+</pre>
+</div>
+
+<p>
+To switch to the configuration, run <code>home-manager switch</code>. If your config file is not in the default location, use the <code>-f</code> flag to specify the location.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org53e67f0" class="outline-2">
+<h2 id="org53e67f0">Nix-darwin</h2>
+<div class="outline-text-2" id="text-org53e67f0">
+<p>
+NixOS has a <code>configuration.nix</code> file to customize the OS. nix-darwin is a module for Nix that allows you to use something similar to <code>configuration.nix</code> on macOS.
+</p>
+
+<p>
+Install it with these commands:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+./result/bin/darwin-installer
+</pre>
+</div>
+
+
+<p>
+The configuration file is located in <code>~/.nixpkgs/darwin-configuration.nix</code>.
+</p>
+
+<p>
+A simple configuration would look like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix">{ config, pkgs, ... }:
+
+{
+
+  nixpkgs.config.allowUnfree = true; # Allow unfree packages. Sorry Stallman
+
+  environment.systemPackages = [ # Ensure these packages are installed
+    pkgs.vim
+    pkgs.emacs
+  ];
+
+  services.nix-daemon.enable = false; # Disable daemon
+
+  programs.zsh.enable = true; # Set shell to zsh
+
+  system.stateVersion = 4; # Used for backwards compatibility 
+
+  services.yabai = { # Configure yabai
+    enable = true;                   # Enable it
+    package = pkgs.yabai;            # Set the packages
+    enableScriptingAddition = false; # Disable scripting addition
+    config = {
+      window_placement = "second_child"; # Set your configuration here like so
+    };
+
+    # Extra configuration for yabai
+    extraConfig = ''
+        yabai -m rule --add app="^System Preferences$" manage=off
+        yabai -m rule --add app="^Keka$" manage=off
+        yabai -m rule --add app="^Digital Color Meter$" manage=off
+        yabai -m rule --add app="^Latest$" manage=off
+        yabai -m rule --add app="^Stickies$" manage=off
+        yabai -m rule --add app="^GIMP" manage=off
+        skhd &amp;
+      '';
+    };
+}
+</pre>
+</div>
+
+<p>
+Switching to the configuration is done with <code>darwin-rebuild switch</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc7f3173" class="outline-2">
+<h2 id="orgc7f3173">Conclusion</h2>
+<div class="outline-text-2" id="text-orgc7f3173">
+<p>
+Overall, I find Nix to be more powerful and extensible than Homebrew is. However, some packages don't work or install on macOS due to various issues, such as a dependency not passing tests. For these cases, I have Homebrew installed to use packages that don't work with Nix.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Matei Cotocel</p>
-<p class="date">Created: 2021-09-14 Tue 09:42</p>
+<p class="date">Created: 2021-09-21 Tue 16:49</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

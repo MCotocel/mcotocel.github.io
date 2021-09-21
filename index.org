@@ -1,0 +1,28 @@
+:PROPERTIES:
+:ID:       9E08ABE4-3B4F-4FCF-A4DB-76D2F34385B3
+:END:
+#+title: Index of site
+#+filetags: :blog:
+#+OPTIONS: toc:nil
+
+* Intro
+
+Welcome. Here you can read my random posts which barely ever get uploaded. You can also see how I use Emacs, Linux, AwesomeWM and how I manage my notes, if I ever get around to writing an article about them.
+
+I try to be funny, but usually fail. Sorry for that. If you don't like it, then leave, I'm not keeping you here at gunpoint.
+
+This whole website is generated from Org files, which should be included in the git repo as well. I simply export them to HTML with =org-publish=.
+
+* Links
+
+I'm on various places on the internet. I procrastinate a lot. You can find me on [[https://github.com/mcotocel][Github]], [[https://nixers.net/member.php?action=register&referrer=2196][the Nixers forums]], and some other places (think IRC, Element. and Discord). I don't have many other internet accounts, due to deleting most of them, which I may write about in another post (TL;DR: privacy concerns and the sudden realization that I'm wasting my time). If you want to contact me, feel free to [[mailto:mcotocel@outlook.com][email me]], or send me a message on LiberaChat (Username is Specter).
+
+* Blog
+
+- [[file:./blog_entry_notetaking_with_org_roam.org][Blog entry: Notetaking with Org Roam]]
+- [[file:./blog_entry_homebrew_to_nix.org][Blog entry: Homebrew to Nix]]
+- [[file:./blog_entry_set_up_mu4e_with_mbsync.org][Blog entry: Set up mu4e with mbsync]]
+
+* Note: RSS feeds
+
+I'm going to add RSS feeds to my site soon. Sorry to all of you that only read blogs that have RSS feeds. I also use RSS a lot and understand your pain.
