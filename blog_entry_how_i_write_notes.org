@@ -1,0 +1,17 @@
+#+title: How I write notes and manage my digital garden
+
+I’ve made a digital garden of sorts and uploaded it [[https://tilde.club/~matei/][here]]. I find digital gardens by other people quite interesting, but many of them use various frameworks. Mine doesn’t, so I’ll be annotating my workflow here.
+
+* Writing
+
+I write all of my notes in Emacs, in the Org format. I already do most things in Emacs, so why not this?
+
+Going in more detail, I start off with a main, index note. This links to other notes which are indexes of specific topics, linked together with Org-roam. I currently do not tag notes, but may when they get too messy. I use org-roam-ui to view connections between notes, which is useful when I want to visualize how notes are related. I write all notes for myself, though I try to add some information from people who aren't me. I try and make notes about a variety of things. For example, if this post was a note, so far I’d add notes for digital gardens, frameworks, workflow, Emacs, Org, Org-roam, Org-roam-ui, and indexes.
+
+* Searching
+
+For simple searching of titles of notes, I use =org-roam-node-find=, along with =consult= and =orderless= for fuzzy filtering. For more in-depth searching of the contents of notes, I use =ripgrep=, since it’s faster than grep.
+
+* Exporting
+
+In my garden, I have some personal notes that I don’t want other people to view. This makes exporting slightly more difficult. I tried exporting notes while excluding some tags, which didn’t work, so I just move personal notes to a directory named personal, and configure =org-publish= to not be recursive. I use =org-publish= to publish the rest of the notes as HTML and move them to =~/Garden=. When this is done, I use =scp= to copy them to my =public_html= directory on tilde.club. Once this is done, my notes are instantly available.

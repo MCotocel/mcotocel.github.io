@@ -4,7 +4,7 @@
 <!-- 2021-11-15 Mon 18:52 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>404</title>
+<title>How I write notes and manage my digital garden</title>
 <meta name="author" content="Matei Cotocel" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -195,11 +195,50 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">404</h1>
-<div class="org-center">
+<h1 class="title">How I write notes and manage my digital garden</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgae6c022">Writing</a></li>
+<li><a href="#orge7be39d">Searching</a></li>
+<li><a href="#org5c4279d">Exporting</a></li>
+</ul>
+</div>
+</div>
 <p>
-I'd say something like 'Sorry for the broken link', but everyone hates that, so I'm just gonna send you back <a href="./index.html">home</a>
+I’ve made a digital garden of sorts and uploaded it <a href="https://tilde.club/~matei/">here</a>. I find digital gardens by other people quite interesting, but many of them use various frameworks. Mine doesn’t, so I’ll be annotating my workflow here.
 </p>
+
+<div id="outline-container-orgae6c022" class="outline-2">
+<h2 id="orgae6c022">Writing</h2>
+<div class="outline-text-2" id="text-orgae6c022">
+<p>
+I write all of my notes in Emacs, in the Org format. I already do most things in Emacs, so why not this?
+</p>
+
+<p>
+Going in more detail, I start off with a main, index note. This links to other notes which are indexes of specific topics, linked together with Org-roam. I currently do not tag notes, but may when they get too messy. I use org-roam-ui to view connections between notes, which is useful when I want to visualize how notes are related. I write all notes for myself, though I try to add some information from people who aren't me. I try and make notes about a variety of things. For example, if this post was a note, so far I’d add notes for digital gardens, frameworks, workflow, Emacs, Org, Org-roam, Org-roam-ui, and indexes.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge7be39d" class="outline-2">
+<h2 id="orge7be39d">Searching</h2>
+<div class="outline-text-2" id="text-orge7be39d">
+<p>
+For simple searching of titles of notes, I use <code>org-roam-node-find</code>, along with <code>consult</code> and <code>orderless</code> for fuzzy filtering. For more in-depth searching of the contents of notes, I use <code>ripgrep</code>, since it’s faster than grep.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5c4279d" class="outline-2">
+<h2 id="org5c4279d">Exporting</h2>
+<div class="outline-text-2" id="text-org5c4279d">
+<p>
+In my garden, I have some personal notes that I don’t want other people to view. This makes exporting slightly more difficult. I tried exporting notes while excluding some tags, which didn’t work, so I just move personal notes to a directory named personal, and configure <code>org-publish</code> to not be recursive. I use <code>org-publish</code> to publish the rest of the notes as HTML and move them to <code>~/Garden</code>. When this is done, I use <code>scp</code> to copy them to my <code>public_html</code> directory on tilde.club. Once this is done, my notes are instantly available.
+</p>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">

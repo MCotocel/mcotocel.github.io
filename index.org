@@ -19,12 +19,14 @@ I'm on various places on the internet. I procrastinate a lot. You can find me on
 
 * Blog
 
+- [[file:./blog_entry_how_i_write_notes.org][Blog entry: How I write notes and manage my digital garden]]
 - [[file:./blog_entry_notetaking_with_org_roam.org][Blog entry: Notetaking with Org Roam]]
 - [[file:./blog_entry_homebrew_to_nix.org][Blog entry: Homebrew to Nix]]
 - [[file:./blog_entry_set_up_mu4e_with_mbsync.org][Blog entry: Set up mu4e with mbsync]]
 
 * Not blog
 
+- [[https://tilde.club/~matei][Digital Garden]]
 - [[./startpage][Startpage]]
 
 * Note: RSS feeds

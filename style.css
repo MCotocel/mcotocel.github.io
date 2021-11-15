@@ -1,43 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
 body {
-  padding: 50px;
-  color: #aeaeae;
+  color: #d5d5d5;
   background-color: #181e23;
-  font-family: "Iosevka", monospace;
+  font-family: Roboto, serif;
   font-size: 16px;
   line-height: 22px;
-  margin: 0 auto;
-  max-width: 960px;
+  margin: auto;
+  width: 75%;
+  padding-top: 25px;
 }
 
-pre, code {
-  color: #aeaeae;
+pre {
+  color: #d5d5d5;
   background: #1f252a;
-  border: 0px solid #1f252a;
-  border-left: 3px solid #384149;
-  box-shadow: none;
-  font-family: "Iosevka", monospace;
+  border: 0px solid #222222;
+  border-radius: 15px;
+  box-shadow: 0px 0px 15px #111111;
+  font-size: 16px;
+  font-family: monospace;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-right: 50px;
   padding-left: 50px;
 }
 
-code {
-  border: 1px solid #1f252a;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-right: 5px;
-  padding-left: 5px;
-}
-
 blockquote {
-  color: #aeaeae;
+  color: #d5d5d5;
   background: #1f252a;
-  border: 0px solid #1f252a;
-  border-left: 3px solid #384149;
-  box-shadow: none;
-  font-family: "Iosevka", monospace;
-  font-size: 20px;
+  border: 0px solid #222222;
+  border-radius: 15px;
+  box-shadow: 0px 0px 15px #111111;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-right: 50px;
@@ -45,13 +40,13 @@ blockquote {
 }
 
 a {
-  color: #80d1ff;
+  color: #d5d5d5;
+  font-weight: bold;
   text-decoration: none;
 }
 
 a:hover {
-  font-weight: bold;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 h1,
@@ -87,4 +82,39 @@ h6 {
 
 #postamble {
   display: none;
+}
+
+img {
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0px 0px 15px #111111;
+    border-radius: 15px
+}
+
+table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    min-width: 400px;
+    box-shadow: 0px 0px 25px #000000;
+}
+
+thead tr {
+    text-align: center;
+    border: 2px solid #d5d5d5;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 2px solid #d5d5d5;
+}
+
+tbody tr:last-of-type {
+    border: 2px solid #d5d5d5;
+}
+
+thead tr {
+    background-color: #181e23;
+    color: #d5d5d5;
+    text-align: center;
+    border: 2px solid #d5d5d5;
 }
