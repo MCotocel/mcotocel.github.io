@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Index</title>
+<title>NixOS on an X1 Carbon Gen 8</title>
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -193,14 +193,135 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Index</h1>
+<h1 class="title">NixOS on an X1 Carbon Gen 8</h1>
 <p>
-Welcome to my blog. I post things here sometimes.
+<i>Published: 2023-08-08</i>
 </p>
 
-<ul class="org-ul">
-<li><a href="./20230808153704-nixos_on_an_x1_carbon_gen_8.html">NixOS on an X1 Carbon Gen 8</a></li>
-</ul>
+<p>
+Recently, I picked up an <a href="https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkpadx1/x1-carbon-gen-8-/22tp2x1x1c8">X1 Carbon Gen 8</a> for a great price. Naturally, I immediately removed the preinstalled Windows 11 installation and started installing <a href="https://nixos.org/">NixOS</a>, which I've used before because of its declarative method of configuration
+</p>
+
+<p>
+The laptop is pretty well spec'd out:
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">CPU</td>
+<td class="org-left">i7-10510U</td>
+</tr>
+
+<tr>
+<td class="org-left">RAM</td>
+<td class="org-left">16GB</td>
+</tr>
+
+<tr>
+<td class="org-left">Storage</td>
+<td class="org-left">1TB</td>
+</tr>
+
+<tr>
+<td class="org-left">Display</td>
+<td class="org-left">14" FHD</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The CPU is good enough to compile software at a decent speed. I don't need anything blazing fast.
+</p>
+
+<p>
+The main selling point is its weight. Starting at just 1.09 kilograms, it's the perfect laptop for development and studying, since you can just throw it into a backpack. It also has pretty good battery life, so most of the time you don't have to worry about lugging a power brick around with you. Coming from a Lenovo Legion 5, this is a noticeable improvement. The one downside is that the RAM is not user-upgradeable, although by the time I need to upgrade it I'll probably be getting a new laptop anyway.
+</p>
+
+<p>
+Now, onto NixOS. Keeping in line with my naming scheme based around the periodic table, I named it lithium.
+</p>
+
+<blockquote>
+<p>
+Note: All configurations in their entirety can be found on Github <a href="https://github.com/mcotocel/nixdots">here</a>.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-nix"><span style="color: #ddb2ff;">lithium</span> =
+  nixpkgs.lib.nixosSystem <span style="color: #ACE1FF;">{</span>
+    <span style="color: #ddb2ff;">system</span> = <span style="color: #97D59B;">"x86_64-linux"</span>;
+    <span style="color: #ddb2ff;">modules</span> = <span style="color: #C780FF;">[</span>
+      home-manager.nixosModules.home-manager
+      <span style="color: #97D59B;">{</span> <span style="color: #ddb2ff;">home-manager.users.matei</span> = <span style="color: #C780FF;">import</span> <span style="color: #D8A8FF;">./hosts/lithium/home.nix</span>; <span style="color: #97D59B;">}</span>
+      kmonad.nixosModules.default
+      <span style="color: #D8A8FF;">./hosts/lithium/configuration.nix</span>
+      <span style="color: #97D59B;">{</span>
+        <span style="color: #ddb2ff;">nixpkgs.overlays</span> = <span style="color: #D8A8FF;">[</span>
+          <span style="color: #BEF8C1;">(</span><span style="color: #C780FF;">import</span> self.inputs.emacs<span style="color: #BEF8C1;">)</span>
+          <span style="color: #BEF8C1;">(</span><span style="color: #C780FF;">import</span> <span style="color: #D8A8FF;">./overlays/emacs-unstable.nix</span><span style="color: #BEF8C1;">)</span>
+          <span style="color: #BEF8C1;">(</span><span style="color: #C780FF;">import</span> <span style="color: #D8A8FF;">./overlays/ncmpcpp.nix</span><span style="color: #BEF8C1;">)</span>
+        <span style="color: #D8A8FF;">]</span>;
+      <span style="color: #97D59B;">}</span>
+    <span style="color: #C780FF;">]</span>;
+  <span style="color: #ACE1FF;">}</span>;
+</pre>
+</div>
+
+<p>
+Since it has Intel graphics, I decided to take the opportunity to switch to Hyprland, a tiling Wayland compositor. It's the latest trend. It's also my first time using Wayland, and I love it. I went with home-manager for installation and configuration, since I eventually want all my configurations to be declared by it. 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix"><span style="color: #ACE1FF;">{</span> config, ... <span style="color: #ACE1FF;">}</span>:
+
+<span style="color: #ACE1FF;">{</span>
+  <span style="color: #ddb2ff;">wayland.windowManager.hyprland</span> = <span style="color: #C780FF;">{</span>
+    <span style="color: #ddb2ff;">enable</span> = <span style="color: #C780FF;">true</span>;
+    <span style="color: #ddb2ff;">extraConfig</span> = <span style="color: #97D59B;">''</span>
+<span style="color: #97D59B;">    ''</span>;
+  <span style="color: #C780FF;">}</span>;
+<span style="color: #ACE1FF;">}</span>
+</pre>
+</div>
+
+<p>
+Now that I don't have Windows, I should have a way of upgrading firmware from NixOS. My device is supported by fwupd, so let's use that.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix"><span style="color: #ddb2ff;">services.fwupd.enable</span> = <span style="color: #C780FF;">true</span>;
+</pre>
+</div>
+
+<p>
+My laptop has a fingerprint scanner, and I'd like to use that for convenience.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix"><span style="color: #ddb2ff;">services.fprintd</span> = <span style="color: #ACE1FF;">{</span>
+  <span style="color: #ddb2ff;">enable</span> = <span style="color: #C780FF;">true</span>;
+  <span style="color: #ddb2ff;">tod.enable</span> = <span style="color: #C780FF;">true</span>;
+  <span style="color: #ddb2ff;">tod.driver</span> = pkgs.libfprint-2-tod1-vfs0090;
+<span style="color: #ACE1FF;">}</span>;
+</pre>
+</div>
+
+<p>
+Now with the install out of the way, how does it feel using it day to day? Wonderful, for the most part. I have <a href="https://tailscale.com">Tailscale</a> set up to access my Raspberry Pi servers at home, or to use the old Lenovo Legion 5 if I need the graphics card for messing around with LLMs, although it's still quite slow running on a 1660 Ti. The main annoyance I have is not with the laptop, but with the Thinkpad Gen 2 dock. Everything works, except for HDMI. It'll seem fine for the first few minutes, but then it'll flicker on and off every ~30 seconds. The dock works perfectly fine with the Steam Deck. Perhaps this is because my monitor has a refresh rate of 144hz, and only the Steam Deck can run it at that refresh rate. When connecting the HDMI cable directly to the laptop, it works fine, but it's capped at 60hz. It's a relatively minor issue, and I can live with it.
+</p>
+
+<p>
+Overall, it's the perfect laptop for studying and coding, and there's not much more I could want from it.
+</p>
 </div>
 </body>
 </html>

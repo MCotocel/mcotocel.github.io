@@ -1,120 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-
 body {
+  padding: 50px;
   color: #d5d5d5;
   background-color: #181e23;
-  font-family: Roboto, serif;
+  font-family: monospace;
   font-size: 16px;
-  line-height: 22px;
-  margin: auto;
-  width: 75%;
-  padding-top: 25px;
 }
 
-pre {
-  color: #d5d5d5;
+pre, blockquote, src {
   background: #1f252a;
-  border: 0px solid #222222;
-  border-radius: 15px;
-  box-shadow: 0px 0px 15px #111111;
-  font-size: 16px;
+  border: 3px solid #1f252a;
+  border-left: 3px solid #384149;
   font-family: monospace;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-right: 50px;
-  padding-left: 50px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 15px;
+  padding-left: 30px;
 }
 
 blockquote {
-  color: #d5d5d5;
-  background: #1f252a;
-  border: 0px solid #222222;
-  border-radius: 15px;
-  box-shadow: 0px 0px 15px #111111;
-  font-family: Roboto, sans-serif;
-  font-size: 16px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-right: 50px;
-  padding-left: 50px;
+  font-size: 14px;
 }
 
 a {
-  color: #d5d5d5;
-  font-weight: bold;
+  color: #80d1ff;
   text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
   font-weight: bold;
-  list-style: none;
-}
-
-h1 {
-  font-size: 30px;
-}
-
-h2 {
-  font-size: 26px;
-}
-
-h3 {
-  font-size: 22px;
-}
-
-h4 {
-  font-size: 18px;
-}
-
-h5,
-h6 {
-  font-size: 18px;
-}
-
-#postamble {
-  display: none;
-}
-
-img {
-    width: 100%;
-    max-width: 600px;
-    box-shadow: 0px 0px 15px #111111;
-    border-radius: 15px
-}
-
-table {
-    border-collapse: collapse;
-    margin: 25px 0;
-    min-width: 400px;
-    box-shadow: 0px 0px 25px #000000;
-}
-
-thead tr {
-    text-align: center;
-    border: 2px solid #d5d5d5;
-}
-
-th, td {
-    padding: 12px 15px;
-    border: 2px solid #d5d5d5;
-}
-
-tbody tr:last-of-type {
-    border: 2px solid #d5d5d5;
-}
-
-thead tr {
-    background-color: #181e23;
-    color: #d5d5d5;
-    text-align: center;
-    border: 2px solid #d5d5d5;
+  text-decoration: none;
 }
