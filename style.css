@@ -30,3 +30,8 @@ a:hover {
   font-weight: bold;
   text-decoration: none;
 }
+
+table, th, td {
+  border: 1px solid;
+  padding: 10px;
+}
