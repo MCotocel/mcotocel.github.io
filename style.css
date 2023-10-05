@@ -1,7 +1,7 @@
 body {
   padding: 50px;
   color: #d5d5d5;
-  background-color: #181e23;
+  background-color: #0c1213;
   font-family: monospace;
   font-size: 16px;
 }
@@ -34,4 +34,8 @@ a:hover {
 table, th, td {
   border: 1px solid;
   padding: 10px;
+}
+
+img {
+  max-width: 800px;
 }
