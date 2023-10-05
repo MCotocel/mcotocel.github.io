@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Index</title>
+<title>Using an audio interface with NixOS</title>
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -193,14 +193,53 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Index</h1>
+<h1 class="title">Using an audio interface with NixOS</h1>
 <p>
-Welcome to my blog. I post things here sometimes.
+After realising how expensive buying guitar pedals can get, I decided to look around for an audio interface. I only have to buy one, and it can be relatively cheap, since I don't need the best quality (I'm not recording, just practicing). I decided to go for the Komplete Audio 1 because it seemed pretty decent spec-wise and it also looked good.
 </p>
 
-<ul class="org-ul">
-<li><a href="./20230808153704-nixos_on_an_x1_carbon_gen_8.html">NixOS on an X1 Carbon Gen 8</a></li>
-</ul>
+<p>
+Of course, I couldn't really use an audio interface without some software, so after a bit of research, I settled for Guitarix. It seems to be the easiest option on Linux. It comes with a few built-in effects, but I wanted more, which was easy with NixOS.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix"><span style="color: #C780FF; font-style: italic;">environment</span><span style="color: #D5D5D5; background-color: #0c1213;">.</span><span style="color: #D8A8FF; font-style: italic;">systemPackages</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #ACE1FF;">with</span> <span style="color: #C780FF; font-style: italic;">pkgs</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span> <span style="color: #ACE1FF; background-color: #0c1213;">[</span>
+  <span style="color: #C780FF; font-style: italic;">guitarix</span>
+  <span style="color: #C780FF; font-style: italic;">gxplugins-lv2</span>
+  <span style="color: #C780FF; font-style: italic;">ladspaPlugins</span>
+<span style="color: #ACE1FF; background-color: #0c1213;">]</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span>
+</pre>
+</div>
+
+<p>
+Guitarix was working fine, I could hear everything. However, the tuner would refuse to work and I was getting error messages when starting it. After digging around a bit, I found <a href="https://github.com/musnix/musnix">musnix</a>, which seemed promising. I added it to my flakes configuration and enabled it.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix"><span style="color: #C780FF; font-style: italic;">inputs</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #ACE1FF; background-color: #0c1213;">{</span>
+  <span style="color: #D8A8FF; font-style: italic;">musnix</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #C780FF; background-color: #0c1213;">{</span>
+    <span style="color: #D8A8FF; font-style: italic;">url</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #97D59B;">"github:musnix/musnix"</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span>
+  <span style="color: #C780FF; background-color: #0c1213;">}</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span>
+<span style="color: #ACE1FF; background-color: #0c1213;">}</span>:
+
+<span style="color: #C780FF; font-style: italic;">output</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #ACE1FF; background-color: #0c1213;">{</span> <span style="color: #D8A8FF; font-style: italic;">self</span><span style="color: #D5D5D5; background-color: #0c1213;">,</span> <span style="color: #D8A8FF; font-style: italic;">nixpkgs</span><span style="color: #D5D5D5; background-color: #0c1213;">,</span> <span style="color: #D8A8FF; font-style: italic;">musnix</span> <span style="color: #ACE1FF; background-color: #0c1213;">}</span>: <span style="color: #ACE1FF; background-color: #0c1213;">{</span>
+  <span style="color: #D8A8FF; font-style: italic;">nixosConfigurations</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #C780FF; background-color: #0c1213;">{</span>
+    <span style="color: #D8A8FF; font-style: italic;">lithium</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #C780FF; font-style: italic;">nixpkgs</span><span style="color: #D5D5D5; background-color: #0c1213;">.</span><span style="color: #D8A8FF; font-style: italic;">lib</span><span style="color: #D8A8FF; background-color: #0c1213; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">nixosSystem</span> <span style="color: #97D59B; background-color: #0c1213;">{</span>
+      <span style="color: #D8A8FF; font-style: italic;">modules</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #D8A8FF; background-color: #0c1213;">[</span> <span style="color: #C780FF; font-style: italic;">musnix</span><span style="color: #D5D5D5; background-color: #0c1213;">.</span><span style="color: #D8A8FF; font-style: italic;">nixosModules</span><span style="color: #D8A8FF; background-color: #0c1213; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">musnix</span> <span style="color: #D8A8FF; background-color: #0c1213;">]</span>
+    <span style="color: #97D59B; background-color: #0c1213;">}</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span>
+  <span style="color: #C780FF; background-color: #0c1213;">}</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span>
+<span style="color: #ACE1FF; background-color: #0c1213;">}</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-nix"><span style="color: #C780FF; font-style: italic;">musnix</span><span style="color: #D5D5D5; background-color: #0c1213;">.</span><span style="color: #D8A8FF; font-style: italic;">enable</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #C780FF; font-style: italic;">true</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span>
+</pre>
+</div>
+
+<p>
+The tuner now works perfectly, and all plugins show up. I can now use my laptop to get the perfect guitar tone instead of spending money on yet another fuzz pedal.
+</p>
 </div>
 </body>
 </html>
