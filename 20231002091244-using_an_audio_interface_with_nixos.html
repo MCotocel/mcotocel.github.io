@@ -203,11 +203,11 @@ Of course, I couldn't really use an audio interface without some software, so af
 </p>
 
 <div class="org-src-container">
-<pre class="src src-nix"><span style="color: #C780FF; font-style: italic;">environment</span><span style="color: #D5D5D5; background-color: #0c1213;">.</span><span style="color: #D8A8FF; font-style: italic;">systemPackages</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #ACE1FF;">with</span> <span style="color: #C780FF; font-style: italic;">pkgs</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span> <span style="color: #ACE1FF; background-color: #0c1213;">[</span>
+<pre class="src src-nix"><span style="color: #C780FF; font-style: italic;">environment</span><span style="color: #D5D5D5; background-color: #000000;">.</span><span style="color: #D8A8FF; font-style: italic;">systemPackages</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #ACE1FF;">with</span> <span style="color: #C780FF; font-style: italic;">pkgs</span><span style="color: #D5D5D5; background-color: #000000;">;</span> <span style="color: #ACE1FF; background-color: #000000;">[</span>
   <span style="color: #C780FF; font-style: italic;">guitarix</span>
   <span style="color: #C780FF; font-style: italic;">gxplugins-lv2</span>
   <span style="color: #C780FF; font-style: italic;">ladspaPlugins</span>
-<span style="color: #ACE1FF; background-color: #0c1213;">]</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span>
+<span style="color: #ACE1FF; background-color: #000000;">]</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
 </pre>
 </div>
 
@@ -216,24 +216,24 @@ Guitarix was working fine, I could hear everything. However, the tuner would ref
 </p>
 
 <div class="org-src-container">
-<pre class="src src-nix"><span style="color: #C780FF; font-style: italic;">inputs</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #ACE1FF; background-color: #0c1213;">{</span>
-  <span style="color: #D8A8FF; font-style: italic;">musnix</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #C780FF; background-color: #0c1213;">{</span>
-    <span style="color: #D8A8FF; font-style: italic;">url</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #97D59B;">"github:musnix/musnix"</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span>
-  <span style="color: #C780FF; background-color: #0c1213;">}</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span>
-<span style="color: #ACE1FF; background-color: #0c1213;">}</span>:
+<pre class="src src-nix"><span style="color: #C780FF; font-style: italic;">inputs</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #ACE1FF; background-color: #000000;">{</span>
+  <span style="color: #D8A8FF; font-style: italic;">musnix</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #C780FF; background-color: #000000;">{</span>
+    <span style="color: #D8A8FF; font-style: italic;">url</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #97D59B;">"github:musnix/musnix"</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
+  <span style="color: #C780FF; background-color: #000000;">}</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
+<span style="color: #ACE1FF; background-color: #000000;">}</span>:
 
-<span style="color: #C780FF; font-style: italic;">output</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #ACE1FF; background-color: #0c1213;">{</span> <span style="color: #D8A8FF; font-style: italic;">self</span><span style="color: #D5D5D5; background-color: #0c1213;">,</span> <span style="color: #D8A8FF; font-style: italic;">nixpkgs</span><span style="color: #D5D5D5; background-color: #0c1213;">,</span> <span style="color: #D8A8FF; font-style: italic;">musnix</span> <span style="color: #ACE1FF; background-color: #0c1213;">}</span>: <span style="color: #ACE1FF; background-color: #0c1213;">{</span>
-  <span style="color: #D8A8FF; font-style: italic;">nixosConfigurations</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #C780FF; background-color: #0c1213;">{</span>
-    <span style="color: #D8A8FF; font-style: italic;">lithium</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #C780FF; font-style: italic;">nixpkgs</span><span style="color: #D5D5D5; background-color: #0c1213;">.</span><span style="color: #D8A8FF; font-style: italic;">lib</span><span style="color: #D8A8FF; background-color: #0c1213; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">nixosSystem</span> <span style="color: #97D59B; background-color: #0c1213;">{</span>
-      <span style="color: #D8A8FF; font-style: italic;">modules</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #D8A8FF; background-color: #0c1213;">[</span> <span style="color: #C780FF; font-style: italic;">musnix</span><span style="color: #D5D5D5; background-color: #0c1213;">.</span><span style="color: #D8A8FF; font-style: italic;">nixosModules</span><span style="color: #D8A8FF; background-color: #0c1213; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">musnix</span> <span style="color: #D8A8FF; background-color: #0c1213;">]</span>
-    <span style="color: #97D59B; background-color: #0c1213;">}</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span>
-  <span style="color: #C780FF; background-color: #0c1213;">}</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span>
-<span style="color: #ACE1FF; background-color: #0c1213;">}</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span>
+<span style="color: #C780FF; font-style: italic;">output</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #ACE1FF; background-color: #000000;">{</span> <span style="color: #D8A8FF; font-style: italic;">self</span><span style="color: #D5D5D5; background-color: #000000;">,</span> <span style="color: #D8A8FF; font-style: italic;">nixpkgs</span><span style="color: #D5D5D5; background-color: #000000;">,</span> <span style="color: #D8A8FF; font-style: italic;">musnix</span> <span style="color: #ACE1FF; background-color: #000000;">}</span>: <span style="color: #ACE1FF; background-color: #000000;">{</span>
+  <span style="color: #D8A8FF; font-style: italic;">nixosConfigurations</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #C780FF; background-color: #000000;">{</span>
+    <span style="color: #D8A8FF; font-style: italic;">lithium</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #C780FF; font-style: italic;">nixpkgs</span><span style="color: #D5D5D5; background-color: #000000;">.</span><span style="color: #D8A8FF; font-style: italic;">lib</span><span style="color: #D8A8FF; background-color: #000000; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">nixosSystem</span> <span style="color: #97D59B; background-color: #000000;">{</span>
+      <span style="color: #D8A8FF; font-style: italic;">modules</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #D8A8FF; background-color: #000000;">[</span> <span style="color: #C780FF; font-style: italic;">musnix</span><span style="color: #D5D5D5; background-color: #000000;">.</span><span style="color: #D8A8FF; font-style: italic;">nixosModules</span><span style="color: #D8A8FF; background-color: #000000; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">musnix</span> <span style="color: #D8A8FF; background-color: #000000;">]</span>
+    <span style="color: #97D59B; background-color: #000000;">}</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
+  <span style="color: #C780FF; background-color: #000000;">}</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
+<span style="color: #ACE1FF; background-color: #000000;">}</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-nix"><span style="color: #C780FF; font-style: italic;">musnix</span><span style="color: #D5D5D5; background-color: #0c1213;">.</span><span style="color: #D8A8FF; font-style: italic;">enable</span> <span style="color: #D5D5D5; background-color: #0c1213;">=</span> <span style="color: #C780FF; font-style: italic;">true</span><span style="color: #D5D5D5; background-color: #0c1213;">;</span>
+<pre class="src src-nix"><span style="color: #C780FF; font-style: italic;">musnix</span><span style="color: #D5D5D5; background-color: #000000;">.</span><span style="color: #D8A8FF; font-style: italic;">enable</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #C780FF; font-style: italic;">true</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
 </pre>
 </div>
 

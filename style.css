@@ -1,15 +1,14 @@
 body {
   padding: 50px;
   color: #d5d5d5;
-  background-color: #0c1213;
+  background-color: #000000;
   font-family: monospace;
   font-size: 16px;
 }
 
 pre, blockquote, src {
-  background: #1f252a;
-  border: 3px solid #1f252a;
-  border-left: 3px solid #384149;
+  background: #000000;
+  border: 3px solid #0f1719;
   font-family: monospace;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -37,5 +36,9 @@ table, th, td {
 }
 
 img {
-  max-width: 800px;
+  max-width: 400px;
+}
+
+b {
+  color: #ff8080;
 }

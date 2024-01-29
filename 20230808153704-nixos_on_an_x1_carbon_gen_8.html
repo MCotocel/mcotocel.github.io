@@ -256,23 +256,23 @@ Note: All configurations in their entirety can be found on Github <a href="https
 </blockquote>
 
 <div class="org-src-container">
-<pre class="src src-nix"><span style="color: #ddb2ff;">lithium</span> =
-  nixpkgs.lib.nixosSystem <span style="color: #ACE1FF;">{</span>
-    <span style="color: #ddb2ff;">system</span> = <span style="color: #97D59B;">"x86_64-linux"</span>;
-    <span style="color: #ddb2ff;">modules</span> = <span style="color: #C780FF;">[</span>
-      home-manager.nixosModules.home-manager
-      <span style="color: #97D59B;">{</span> <span style="color: #ddb2ff;">home-manager.users.matei</span> = <span style="color: #C780FF;">import</span> <span style="color: #D8A8FF;">./hosts/lithium/home.nix</span>; <span style="color: #97D59B;">}</span>
-      kmonad.nixosModules.default
-      <span style="color: #D8A8FF;">./hosts/lithium/configuration.nix</span>
-      <span style="color: #97D59B;">{</span>
-        <span style="color: #ddb2ff;">nixpkgs.overlays</span> = <span style="color: #D8A8FF;">[</span>
-          <span style="color: #BEF8C1;">(</span><span style="color: #C780FF;">import</span> self.inputs.emacs<span style="color: #BEF8C1;">)</span>
-          <span style="color: #BEF8C1;">(</span><span style="color: #C780FF;">import</span> <span style="color: #D8A8FF;">./overlays/emacs-unstable.nix</span><span style="color: #BEF8C1;">)</span>
-          <span style="color: #BEF8C1;">(</span><span style="color: #C780FF;">import</span> <span style="color: #D8A8FF;">./overlays/ncmpcpp.nix</span><span style="color: #BEF8C1;">)</span>
-        <span style="color: #D8A8FF;">]</span>;
-      <span style="color: #97D59B;">}</span>
-    <span style="color: #C780FF;">]</span>;
-  <span style="color: #ACE1FF;">}</span>;
+<pre class="src src-nix"><span style="color: #C780FF; font-style: italic;">lithium</span> <span style="color: #D5D5D5; background-color: #000000;">=</span>
+  <span style="color: #C780FF; font-style: italic;">nixpkgs</span><span style="color: #D5D5D5; background-color: #000000;">.</span><span style="color: #D8A8FF; font-style: italic;">lib</span><span style="color: #D8A8FF; background-color: #000000; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">nixosSystem</span> <span style="color: #ACE1FF; background-color: #000000;">{</span>
+    <span style="color: #D8A8FF; font-style: italic;">system</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #97D59B;">"x86_64-linux"</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
+    <span style="color: #D8A8FF; font-style: italic;">modules</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #C780FF; background-color: #000000;">[</span>
+      <span style="color: #C780FF; font-style: italic;">home-manager</span><span style="color: #D5D5D5; background-color: #000000;">.</span><span style="color: #D8A8FF; font-style: italic;">nixosModules</span><span style="color: #D8A8FF; background-color: #000000; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">home-manager</span>
+      <span style="color: #97D59B; background-color: #000000;">{</span> <span style="color: #D8A8FF; font-style: italic;">home-manager</span><span style="color: #D8A8FF; background-color: #000000; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">users</span><span style="color: #D8A8FF; background-color: #000000; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">matei</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #C780FF; font-style: italic;">import</span> ./hosts/lithium/home.nix<span style="color: #D5D5D5; background-color: #000000;">;</span> <span style="color: #97D59B; background-color: #000000;">}</span>
+      <span style="color: #C780FF; font-style: italic;">kmonad</span><span style="color: #D5D5D5; background-color: #000000;">.</span><span style="color: #D8A8FF; font-style: italic;">nixosModules</span><span style="color: #D8A8FF; background-color: #000000; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">default</span>
+      ./hosts/lithium/configuration.nix
+      <span style="color: #97D59B; background-color: #000000;">{</span>
+        <span style="color: #D8A8FF; font-style: italic;">nixpkgs</span><span style="color: #D8A8FF; background-color: #000000; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">overlays</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #D8A8FF; background-color: #000000;">[</span>
+          <span style="color: #BEF8C1; background-color: #000000;">(</span><span style="color: #C780FF; font-style: italic;">import</span> <span style="color: #C780FF; font-style: italic;">self</span><span style="color: #D5D5D5; background-color: #000000;">.</span><span style="color: #D8A8FF; font-style: italic;">inputs</span><span style="color: #D8A8FF; background-color: #000000; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">emacs</span><span style="color: #BEF8C1; background-color: #000000;">)</span>
+          <span style="color: #BEF8C1; background-color: #000000;">(</span><span style="color: #C780FF; font-style: italic;">import</span> ./overlays/emacs-unstable.nix<span style="color: #BEF8C1; background-color: #000000;">)</span>
+          <span style="color: #BEF8C1; background-color: #000000;">(</span><span style="color: #C780FF; font-style: italic;">import</span> ./overlays/ncmpcpp.nix<span style="color: #BEF8C1; background-color: #000000;">)</span>
+        <span style="color: #D8A8FF; background-color: #000000;">]</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
+      <span style="color: #97D59B; background-color: #000000;">}</span>
+    <span style="color: #C780FF; background-color: #000000;">]</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
+  <span style="color: #ACE1FF; background-color: #000000;">}</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
 </pre>
 </div>
 
@@ -281,15 +281,15 @@ Since it has Intel graphics, I decided to take the opportunity to switch to Hypr
 </p>
 
 <div class="org-src-container">
-<pre class="src src-nix"><span style="color: #ACE1FF;">{</span> config, ... <span style="color: #ACE1FF;">}</span>:
+<pre class="src src-nix"><span style="color: #ACE1FF; background-color: #000000;">{</span> <span style="color: #C780FF; font-style: italic;">config</span><span style="color: #D5D5D5; background-color: #000000;">,</span> ... <span style="color: #ACE1FF; background-color: #000000;">}</span>:
 
-<span style="color: #ACE1FF;">{</span>
-  <span style="color: #ddb2ff;">wayland.windowManager.hyprland</span> = <span style="color: #C780FF;">{</span>
-    <span style="color: #ddb2ff;">enable</span> = <span style="color: #C780FF;">true</span>;
-    <span style="color: #ddb2ff;">extraConfig</span> = <span style="color: #97D59B;">''</span>
-<span style="color: #97D59B;">    ''</span>;
-  <span style="color: #C780FF;">}</span>;
-<span style="color: #ACE1FF;">}</span>
+<span style="color: #ACE1FF; background-color: #000000;">{</span>
+  <span style="color: #D8A8FF; font-style: italic;">wayland</span><span style="color: #D8A8FF; background-color: #000000; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">windowManager</span><span style="color: #D8A8FF; background-color: #000000; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">hyprland</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #C780FF; background-color: #000000;">{</span>
+    <span style="color: #D8A8FF; font-style: italic;">enable</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #C780FF; font-style: italic;">true</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
+    <span style="color: #D8A8FF; font-style: italic;">extraConfig</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #97D59B;">''</span>
+<span style="color: #97D59B;">    ''</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
+  <span style="color: #C780FF; background-color: #000000;">}</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
+<span style="color: #ACE1FF; background-color: #000000;">}</span>
 </pre>
 </div>
 
@@ -298,7 +298,7 @@ Now that I don't have Windows, I should have a way of upgrading firmware from Ni
 </p>
 
 <div class="org-src-container">
-<pre class="src src-nix"><span style="color: #ddb2ff;">services.fwupd.enable</span> = <span style="color: #C780FF;">true</span>;
+<pre class="src src-nix"><span style="color: #C780FF; font-style: italic;">services</span><span style="color: #D5D5D5; background-color: #000000;">.</span><span style="color: #D8A8FF; font-style: italic;">fwupd</span><span style="color: #D8A8FF; background-color: #000000; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">enable</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #C780FF; font-style: italic;">true</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
 </pre>
 </div>
 
@@ -307,11 +307,11 @@ My laptop has a fingerprint scanner, and I'd like to use that for convenience.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-nix"><span style="color: #ddb2ff;">services.fprintd</span> = <span style="color: #ACE1FF;">{</span>
-  <span style="color: #ddb2ff;">enable</span> = <span style="color: #C780FF;">true</span>;
-  <span style="color: #ddb2ff;">tod.enable</span> = <span style="color: #C780FF;">true</span>;
-  <span style="color: #ddb2ff;">tod.driver</span> = pkgs.libfprint-2-tod1-vfs0090;
-<span style="color: #ACE1FF;">}</span>;
+<pre class="src src-nix"><span style="color: #C780FF; font-style: italic;">services</span><span style="color: #D5D5D5; background-color: #000000;">.</span><span style="color: #D8A8FF; font-style: italic;">fprintd</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #ACE1FF; background-color: #000000;">{</span>
+  <span style="color: #D8A8FF; font-style: italic;">enable</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #C780FF; font-style: italic;">true</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
+  <span style="color: #D8A8FF; font-style: italic;">tod</span><span style="color: #D8A8FF; background-color: #000000; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">enable</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #C780FF; font-style: italic;">true</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
+  <span style="color: #D8A8FF; font-style: italic;">tod</span><span style="color: #D8A8FF; background-color: #000000; font-style: italic;">.</span><span style="color: #D8A8FF; font-style: italic;">driver</span> <span style="color: #D5D5D5; background-color: #000000;">=</span> <span style="color: #C780FF; font-style: italic;">pkgs</span><span style="color: #D5D5D5; background-color: #000000;">.</span><span style="color: #D8A8FF; font-style: italic;">libfprint-2-tod1-vfs0090</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
+<span style="color: #ACE1FF; background-color: #000000;">}</span><span style="color: #D5D5D5; background-color: #000000;">;</span>
 </pre>
 </div>
 
